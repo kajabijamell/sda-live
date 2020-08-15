@@ -10,39 +10,6 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <% if current_user && current_user.admin? %>
-      <%= link_to('SDA Live', admin_dashboard_path, class: 'navbar-brand') %>
-    <% else %>
-      <%= link_to('SDA Live', root_path, class: 'navbar-brand') %>
-    <% end %>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <% if current_user.present? %>
-          <% if current_user.super_admin? %>
-            <li class="nav-item">
-              <%= link_to('Admins', admins_path, class: 'nav-link') %>
-            </li>
-          <% end %>
-          <li class="nav-item">
-            <%= link_to('Settings', settings_profile_path, class: 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure ?' }) %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
   <% if current_user.present? %>
     <% if current_user.admin? %>
       <div class="section dashboard">
@@ -85,6 +52,15 @@
               <%= render partial: 'layouts/flash' %>
               <%= yield %>
             </main>
+            <div class="context-menu col-3 p-4 bg-light">
+              <div class="settings-menu d-flex justify-content-between">
+                <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure ?' }) %>
+                <%= link_to('Settings', settings_profile_path, class: 'nav-link') %>
+              </div>
+              <div class="context-menu__content">
+                <%= yield :context_content %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
