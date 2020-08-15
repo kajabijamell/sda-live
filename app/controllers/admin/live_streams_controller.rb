@@ -1,6 +1,8 @@
 class Admin::LiveStreamsController < ApplicationController
   before_action :set_admin_live_stream, only: %i[show destroy new_target create_target destroy_target]
 
+  layout "admin"
+
   # GET /admin/live_streams
   def index
     @admin_live_streams = current_user.church.live_streams

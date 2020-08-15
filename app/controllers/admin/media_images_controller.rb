@@ -2,6 +2,8 @@
 class Admin::MediaImagesController < ApplicationController
   before_action :set_admin_media_image, only: [:show, :edit, :update, :destroy]
 
+  layout "admin"
+
   # GET /admin/media_images
   def index
     @admin_media_images = current_user.church.media_images

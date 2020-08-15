@@ -3,6 +3,8 @@
 class SettingsController < ApplicationController
   before_action :authenticate_user!
 
+  layout 'admin'
+
   def profile; end
 
   def save_profile

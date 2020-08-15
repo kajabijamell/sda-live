@@ -20,7 +20,7 @@
               <div class="row no-gutters">
                 <div class="col">
                   <h3 class="page-heading pt-4 mb-0 text-capitalize">
-                    <%= controller_name %>
+                    <%= controller_name.split('_').map(&:capitalize).join(' ') %>
                   </h3>
                 </div>
               </div>
@@ -30,9 +30,9 @@
             <div class="context-menu col-3 p-4 bg-light">
               <div class="settings-menu d-flex justify-content-between">
                 <h6>
-                  <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure ?' }) %>
+                  <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: '', data: { confirm: 'Are you sure ?' }) %>
                 </h6>
-                <%= link_to settings_profile_path, class: 'nav-link' do %>
+                <%= link_to settings_profile_path, class: '' do %>
                   <i class="fas fa-cog"></i> 
                 <% end %>
               </div>

@@ -1,8 +1,19 @@
 .sidebar {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
   height: 100%;
-}
-.sidebar .nav-link.active {
-  background: #7f7f7f;
-  color: #ffffff;
+  .nav-link {
+    padding: $spacing-sm;
+    &.logo {
+      margin-bottom: 1rem;
+      padding: $spacing-xs;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      border: 3px solid;
+      border-radius: 4px;
+    }
+  }
+  .nav-icon {
+    margin-right: $spacing-sm;
+  }
 }

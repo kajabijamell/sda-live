@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class Admin::SettingsController < ApplicationController
 
+  layout "admin"
+
   def church_update
     @church = current_user.church
     if @church.update(church_params)

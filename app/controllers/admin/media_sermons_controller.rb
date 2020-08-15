@@ -2,6 +2,8 @@
 class Admin::MediaSermonsController < ApplicationController
   before_action :set_admin_media_sermon, only: [:show, :edit, :update, :destroy]
 
+  layout "admin"
+
   # GET /admin/media_sermons
   # GET /admin/media_sermons.json
   def index

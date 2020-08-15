@@ -2,6 +2,8 @@
 class Admin::MembersController < ApplicationController
   before_action :set_admin_member, only: [:show, :edit, :update, :destroy]
 
+  layout "admin"
+
   # GET /admin/members
   def index
     @admin_members = User.where(role: :member, subdomain: current_user.subdomain)

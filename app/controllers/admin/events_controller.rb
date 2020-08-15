@@ -3,6 +3,8 @@ class Admin::EventsController < ApplicationController
   before_action :set_admin_event, only: %i[show edit update destroy]
   before_action :set_time_zone, except: :destroy
 
+  layout "admin"
+
   # GET /admin/events
   def index
     @admin_events = current_user.church.events
