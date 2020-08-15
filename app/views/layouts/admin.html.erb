@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SdaLive</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <% if current_user && current_user.admin? %>
+      <%= link_to('SDA Live', admin_dashboard_path, class: 'navbar-brand') %>
+    <% else %>
+      <%= link_to('SDA Live', root_path, class: 'navbar-brand') %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if current_user.present? %>
+          <% if current_user.super_admin? %>
+            <li class="nav-item">
+              <%= link_to('Admins', admins_path, class: 'nav-link') %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to('Settings', settings_profile_path, class: 'nav-link') %>
+          </li>
+          <li class="nav-item">
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure ?' }) %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <% if current_user.present? %>
+    <% if current_user.admin? %>
+      <div class="section dashboard">
+        <div class="container-fluid fill">
+          <div class="row fill">
+            <nav class="col-2 pt-4 bg-light sidebar">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <%= link_to('News', admin_news_index_path, class: 'nav-link') %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to('Events', admin_events_path, class: 'nav-link') %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to('Members', admin_members_path, class: 'nav-link') %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to('Website', root_path, class: 'nav-link') %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to('Church', admin_my_church_path, class: 'nav-link') %>
+                </li>
+                <!--<li class="nav-item">
+                  <%#= link_to('Media Images', admin_media_images_path, class: 'nav-link') %>
+                </li>-->
+                <li class="nav-item">
+                  <%= link_to('Media Sermons', admin_media_sermons_path, class: 'nav-link') %>
+                </li>
+              </ul>
+            </nav>
+            <main role="main" class="col px-4">
+              <div class="row no-gutters">
+                <div class="col">
+                  <h3 class="page-heading pt-4 mb-0 text-capitalize">
+                    <%= controller_name %>
+                  </h3>
+                </div>
+              </div>
+              <%= render partial: 'layouts/flash' %>
+              <%= yield %>
+            </main>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= render partial: 'layouts/flash' %>
+      <%= yield %>
+    <% end %>
+  <% else %>
+    <%= render partial: 'layouts/flash' %>
+    <%= yield %>
+  <% end %>
+  </body>
+</html>
