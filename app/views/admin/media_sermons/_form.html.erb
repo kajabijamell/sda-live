@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-12">
-    <%= form_with(model: admin_media_sermon, local: true) do |form| %>
+  <div class="col-8">
+    <%= form_with(class: 'form', model: admin_media_sermon, local: true) do |form| %>
       <% if admin_media_sermon.id.blank? %>
         <div class="form-group">
           <%= form.label :video %>

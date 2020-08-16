@@ -9,12 +9,14 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 // Utilities and Helpers
 @import 'utilities/all';
-
 // Layout Styles
 @import 'layout/all';
-
 // Page Specific
 @import 'pages/all';
+// Components
+@import 'components/all';
+// Elements
+@import 'elements/all';
 
 .field_with_errors .message {
   color: #721c24;

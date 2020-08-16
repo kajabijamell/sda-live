@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SdaLive</title>
+    <title>SDA Live</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
   <% if current_user.present? %>
     <% if current_user.admin? %>
       <div class="section dashboard">
-        <div class="container-fluid fill">
-          <div class="row fill">
+        <div class="row no-gutters fill">
+          <div class="col-2">
             <%= render 'shared/sidebar' %>
-            <main role="main" class="col-10 ml-auto px-4">
-              <div class="row no-gutters">
-                <div class="col">
-                  <h3 class="page-heading pt-4 mb-0 text-capitalize">
-                    <%= controller_name.split('_').map(&:capitalize).join(' ') %>
-                  </h3>
-                </div>
-              </div>
+          </div>
+          <% if content_for?(:context_content) %>
+            <main role="main" class="col-7 p-4 ml-auto">
               <%= render partial: 'layouts/flash' %>
               <%= yield %>
             </main>
-            <%# <div class="context-menu col-3 p-4 bg-light">
-              <div class="context-menu__content">
-                <%= yield :context_content %>
-              </div>
-            </div> %>
+          <div class="col-3">
+            <div class="context-menu bg-light">
+              <%= yield :context_content %>
+            </div>
           </div>
+          <% else %>
+            <main role="main" class="col-10 p-4 ml-auto">
+              <%= render partial: 'layouts/flash' %>
+              <%= yield %>
+            </main>
+          <% end %>
         </div>
       </div>
     <% else %>

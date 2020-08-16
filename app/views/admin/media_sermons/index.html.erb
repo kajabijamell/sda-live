@@ -1,51 +1,52 @@
-<br/>
+<%= render partial: 'shared/page_heading', locals: { page_title: 'Sermons', link_title: 'New Sermon', link_path: new_admin_media_sermon_path } %>
 <div class="row">
   <div class="col-12">
-    <%= link_to 'New Media Sermon', new_admin_media_sermon_path, class: 'btn btn-primary' %>
-  </div>
-</div>
-<br/>
-<div class="row">
-  <div class="col-12">
-    <h3>Media Sermons</h3>
-    <% @admin_media_sermons.in_groups_of(3).each do |group| %>
-      <div class="row">
-        <% group.each do |admin_media_sermon| %>
-          <% if admin_media_sermon.present? %>
-            <div class="col-4">
-              <div class="card">
-                <% if admin_media_sermon.get_video_url.present? %>
-                  <div id="hls-player-<%= admin_media_sermon.id %>"></div>
-                  <script>
-                      playerInstance = jwplayer('hls-player-<%= admin_media_sermon.id %>');
-                      playerInstance.setup({
-                          file: '<%= raw(admin_media_sermon.get_video_url) %>',
-                          image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
-                          controls: true
-                      })
-                  </script>
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title">Title: <%= admin_media_sermon.title %></h5>
-                  <h5 class="card-title">Speaker: <%= admin_media_sermon.speaker %></h5>
-                  <h5 class="card-title">Scripture: <%= admin_media_sermon.scripture %></h5>
-                  <h5 class="card-title">Published: <%= admin_media_sermon.published %></h5>
-                  <h5 class="card-title">Video url: <%= admin_media_sermon.get_video_url %></h5>
-                  <% if admin_media_sermon.video.present? %>
-                    <%= link_to 'Download', admin_media_sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'btn btn-primary', target: '_blank' %>
+    <% if @admin_media_sermons.length > 0 %>
+      <h3>Media Sermons</h3>
+      <% @admin_media_sermons.in_groups_of(3).each do |group| %>
+        <div class="row">
+          <% group.each do |admin_media_sermon| %>
+            <% if admin_media_sermon.present? %>
+              <div class="col-4">
+                <div class="card">
+                  <% if admin_media_sermon.get_video_url.present? %>
+                    <div id="hls-player-<%= admin_media_sermon.id %>"></div>
+                    <script>
+                        playerInstance = jwplayer('hls-player-<%= admin_media_sermon.id %>');
+                        playerInstance.setup({
+                            file: '<%= raw(admin_media_sermon.get_video_url) %>',
+                            image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
+                            controls: true
+                        })
+                    </script>
                   <% end %>
-                  <%= link_to 'Show', admin_media_sermon, class: 'btn btn-primary' %>
-                  <%= link_to 'Edit', edit_admin_media_sermon_path(admin_media_sermon), class: 'btn btn-primary' %>
-                  <%= link_to 'Destroy', admin_media_sermon, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure ?' } %>
+                  <div class="card-body">
+                    <h5 class="card-title">Title: <%= admin_media_sermon.title %></h5>
+                    <h5 class="card-title">Speaker: <%= admin_media_sermon.speaker %></h5>
+                    <h5 class="card-title">Scripture: <%= admin_media_sermon.scripture %></h5>
+                    <h5 class="card-title">Published: <%= admin_media_sermon.published %></h5>
+                    <h5 class="card-title">Video url: <%= admin_media_sermon.get_video_url %></h5>
+                    <% if admin_media_sermon.video.present? %>
+                      <%= link_to 'Download', admin_media_sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'btn btn-primary', target: '_blank' %>
+                    <% end %>
+                    <%= link_to 'Show', admin_media_sermon, class: 'btn btn-primary' %>
+                    <%= link_to 'Edit', edit_admin_media_sermon_path(admin_media_sermon), class: 'btn btn-primary' %>
+                    <%= link_to 'Destroy', admin_media_sermon, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure ?' } %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-info" role="alert">
+        You don't have any sermons yet. Click <span class="alert-link">New Sermon</span> or start a live stream to add your first one. 
       </div>
-    <%  end %>
+    <% end %>
   </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
     document.addEventListener('turbolinks:load', function() {

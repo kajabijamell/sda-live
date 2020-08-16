@@ -1,4 +1,4 @@
-<nav class="col-2 bg-light sidebar">
+<nav class="bg-light sidebar">
   <ul class="nav flex-column">
     <li class="nav-item">
       <div class="logo">
@@ -51,7 +51,7 @@
       <% end %>
     </li> -->
   </ul>
-  <div class="settings-menu d-block text-center">
+  <div class="nav-footer d-block text-center">
     <h5>
       <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: '', data: { confirm: 'Are you sure ?' }) %>
     </h5>
