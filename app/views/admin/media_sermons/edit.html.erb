@@ -1,6 +1,83 @@
-<h1>Editing Admin Media Sermon</h1>
-
+<% content_for :context_content do %>
+<h4 class="mb-3">Edit <%= @admin_media_sermon.title %> </h4>
 <%= render 'form', admin_media_sermon: @admin_media_sermon %>
+<br/>
+<%= link_to 'Cancel', admin_media_sermons_path %>
+<% end %>
 
-<%= link_to 'Show', @admin_media_sermon %> |
-<%= link_to 'Back', admin_media_sermons_path %>
+<%= render partial: 'shared/page_heading', locals: { page_title: 'Sermons' } %>
+<div class="row">
+  <div class="col-12">
+    <% if @admin_media_sermons.length > 0 %>
+      <% @admin_media_sermons.in_groups_of(2).each do |group| %>
+        <div class="row">
+          <% group.each do |admin_media_sermon| %>
+            <% if admin_media_sermon.present? %>
+              <div class="col-6">
+                <div class="card rounded-lg overflow-hidden">
+                  <% if admin_media_sermon.get_video_url.present? %>
+                    <div id="video-player-<%= admin_media_sermon.id %>"></div>
+                    <script>
+                        playerInstance = jwplayer('video-player-<%= admin_media_sermon.id %>');
+                        playerInstance.setup({
+                            file: '<%= raw(admin_media_sermon.get_video_url) %>',
+                            image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
+                            controls: true
+                        })
+                    </script>
+                  <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title">Title: <%= admin_media_sermon.title %></h5>
+                    <h5 class="card-title">Speaker: <%= admin_media_sermon.speaker %></h5>
+                    <!-- remove for now
+                    <p class="card-title">Scripture: <%= admin_media_sermon.scripture %></p> -->
+                    <h5 class="card-title">Video url: <%= admin_media_sermon.get_video_url %></h5>
+                    <% if admin_media_sermon.video.present? %>
+                    <%= link_to admin_media_sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'btn btn-primary', target: '_blank' do %>
+                      <i class="fas fa-download btn-icon"></i> Download
+                    <% end %>
+                    <% end %>
+                    <%= link_to edit_admin_media_sermon_path(admin_media_sermon), class: 'btn btn-primary' do %>
+                      <i class="fas fa-edit btn-icon"></i> Edit
+                    <% end %>
+                    <%= link_to admin_media_sermon, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure ?' }  do %>
+                      <i class="fas fa-trash btn-icon"></i>  Delete
+                    <% end %>
+                  </div>
+                  <div class="card-footer">
+                    <span class="text-muted">Published: <%= admin_media_sermon.published %></span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-info" role="alert">
+        You don't have any sermons yet. Click <span class="alert-link">New Sermon</span> or start a live stream to add your first one. 
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Disables Hls Player
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+    document.addEventListener('turbolinks:load', function() {
+        let videos = document.getElementsByClassName('video');
+        length = videos.length
+        for (let i = 0; i < length; i++) {
+            let videoSrc = videos[i].src;
+            if (Hls.isSupported() && videoSrc.indexOf('.m3u8') !== -1) {
+                const hls = new Hls();
+                hls.loadSource(videoSrc);
+                hls.attachMedia(videos[i]);
+            } else if (videos[i].canPlayType('application/vnd.apple.mpegurl')) {
+                videos[i].src = videoSrc;
+            }
+        }
+    });
+</script>
+-->
+

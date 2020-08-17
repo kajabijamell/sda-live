@@ -1,11 +1,13 @@
 <div class="page-heading">
   <div class="row no-gutters">
     <div class="col-12 d-flex justify-content-between align-items-center">
-      <h3 class="page-heading-title text-capitalize">
-        <%= page_title %>
-      </h3>
+      <% if local_assigns[:page_title]  %>
+        <h3 class="page-heading-title text-capitalize">
+            <%= page_title %>
+        </h3>
+      <% end %>
       <% if local_assigns[:link_path]  %>
-        <%= link_to "#{link_title}", "#{link_path}", class: 'btn btn-primary' %>
+        <%= link_to "#{link_title}", "#{link_path}", class: 'btn btn-primary btn-lg' %>
       <% end %>
     </div>
   </div>

@@ -1,5 +1,8 @@
-<h3>New Sermon</h3>
+<%= render partial: 'shared/page_heading', locals: { page_title: 'New Sermon' } %>
+<div class="row">
+  <div class="col-8 pb-3">
+  <%= render 'form', admin_media_sermon: @admin_media_sermon %>
+  </div>
+</div>
+  <%= link_to 'Cancel', admin_media_sermons_path %>
 
-<%= render 'form', admin_media_sermon: @admin_media_sermon %>
-
-<%= link_to 'Back', admin_media_sermons_path %>

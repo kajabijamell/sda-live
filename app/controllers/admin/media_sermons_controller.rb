@@ -19,7 +19,9 @@ class Admin::MediaSermonsController < ApplicationController
   end
 
   # GET /admin/media_sermons/1/edit
-  def edit; end
+  def edit
+    @admin_media_sermons = current_user.church.media_sermons
+  end
 
   # POST /admin/media_sermons
   def create
@@ -37,7 +39,7 @@ class Admin::MediaSermonsController < ApplicationController
   def update
     if @admin_media_sermon.update(update_admin_media_sermon_params)
       # @admin_media_sermon.generate_hls_video if update_admin_media_sermon_params[:video].present?
-      redirect_to @admin_media_sermon, notice: 'Media sermon was successfully updated.'
+      redirect_to admin_media_sermons_url, notice: 'Media sermon was successfully updated.'
     else
       render :edit
     end

@@ -1,11 +1,9 @@
-<div class="sizer--md">
-  <div class="welcome jumbotron jumbotron-fluid p-4 mb-0">
-    <div class="container">
-      <h1 class="display-5">Welcome Back, <%= current_user.fname %>!</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-    </div>
+<div class="welcome jumbotron jumbotron-fluid p-4 mb-0">
+  <div class="container">
+    <h1 class="display-5">Welcome Back, <%= current_user.fname %>!</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
-<% content_for :context_content do %>
- [ Content For Context ]
-<% end %>
+
+<%# content_for :context_content do %>
+<%# end %>
