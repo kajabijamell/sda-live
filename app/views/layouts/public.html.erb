@@ -1,56 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>SdaLive</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <script src="https://cdn.jwplayer.com/libraries/0XxkAVzL.js"></script>
-</head>
-
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to('SDA Live', root_path, class: 'navbar-brand') %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
-      </li>
-
-    </ul>
-  </div>
-</nav>
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <%= link_to('News', public_news_path, class: 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Events', public_events_path, class: 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Sermons', public_sermons_path, class: 'nav-link') %>
-          </li>
-          <li class="nav-item">
-            <%= link_to('Live Stream', public_streams_path, class: 'nav-link') %>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<html class="h-100">
+  <head>
+    <title><%= @church.name %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jwplayer.com/libraries/0XxkAVzL.js"></script>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
+        <%= link_to('SDA Live', root_path, class: 'navbar-brand') %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <%= link_to('News', public_news_path, class: 'nav-link') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to('Events', public_events_path, class: 'nav-link') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to('Sermons', public_sermons_path, class: 'nav-link') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to('Live Stream', public_streams_path, class: 'nav-link') %>
+            </li>
+            <li class="nav-item">
+              <%= link_to('Login', new_user_session_path, class: 'nav-link') %>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main role="main">
       <%= render partial: 'layouts/flash' %>
       <%= yield %>
     </main>
-  </div>
-</div>
-</body>
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
+  </body>
 </html>
