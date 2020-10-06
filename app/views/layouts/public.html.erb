@@ -10,7 +10,7 @@
   </head>
   <body class="d-flex flex-column h-100">
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <%= link_to('SDA Live', root_path, class: 'navbar-brand') %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
         </div>
       </nav>
     </header>
-    <main role="main">
+    <main role="main" style="margin-top:56px;">
       <%= render partial: 'layouts/flash' %>
       <%= yield %>
     </main>
