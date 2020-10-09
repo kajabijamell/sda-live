@@ -1,0 +1,14 @@
+<div class="row mb-4"> 
+  <%= render 'shared/public/section_heading', title: 'Upcoming Events', link: public_events_path %>
+  <% if @church.events.length > 0 %>
+    <% @events.each do |event| %>
+      <%= render 'shared/public/event_card', title: event.name, desc: event.description, img: event.image.url %>
+    <% end %>
+  <% else %>
+    <div class="col-12 mb-4">
+      <div class="card p-3">
+        <p class="card-text">No events at this time.</p>
+      </div>
+    </div>
+  <% end %>
+</div>
