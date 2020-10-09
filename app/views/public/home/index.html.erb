@@ -1,61 +1,8 @@
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark text-light">
-  <div class="col-md-8 p-lg-5 mx-auto my-5">
-    <h1 class="display-4 font-weight-normal mb-4">Welcome to <%= @church.name %></h1>
-    <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
-  </div>
-  <div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-</div>
+<%= render 'shared/public/hero' %>
 <div class="container py-4">
   <div class="row">
     <div class="col-9">
-      <h3 class="mb-4 d-flex align-content-center">Upcoming Events 
-        <%= link_to public_events_path, class: 'h6 ml-2' do %>
-          <i class="fas fa-external-link-alt"></i>
-        <% end %>
-      </h3>
-      <div class="row mb-4 mr-1">
-        <a href="" class="col-6 mb-4">
-          <div class="card text-white">
-            <img src="http://fpoimg.com/1280x720?text=Preview" class="card-img" alt="...">
-            <div class="card-img-overlay d-flex flex-column justify-content-end">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
-        </a>
-        <a href="" class="col-6 mb-4">
-          <div class="card text-white">
-            <img src="http://fpoimg.com/1280x720?text=Preview" class="card-img" alt="...">
-            <div class="card-img-overlay d-flex flex-column justify-content-end">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
-        </a>
-        <a href="" class="col-6 mb-4">
-          <div class="card text-white">
-            <img src="http://fpoimg.com/1280x720?text=Preview" class="card-img" alt="...">
-            <div class="card-img-overlay d-flex flex-column justify-content-end">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
-        </a>
-        <a href="" class="col-6 mb-4">
-          <div class="card text-white">
-            <img src="http://fpoimg.com/1280x720?text=Preview" class="card-img" alt="...">
-            <div class="card-img-overlay d-flex flex-column justify-content-end">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
-        </a>
-      </div>
+      <%= render 'shared/public/events_section' %>
       <h3 class="mb-4 d-flex align-content-center">Latest Sermons
         <%= link_to public_sermons_path, class: 'h6 ml-2' do %>
           <i class="fas fa-external-link-alt"></i>
