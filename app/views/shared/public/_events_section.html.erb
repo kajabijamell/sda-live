@@ -2,7 +2,7 @@
   <%= render 'shared/public/section_heading', title: 'Upcoming Events', link: public_events_path %>
   <% if @church.events.length > 0 %>
     <% @events.each do |event| %>
-      <%= render 'shared/public/event_card', title: event.name, desc: event.description, img: event.image.url %>
+      <%= render 'shared/public/event_card', event: event %>
     <% end %>
   <% else %>
     <div class="col-12 mb-4">

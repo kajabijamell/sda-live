@@ -3,49 +3,7 @@
   <div class="row">
     <div class="col-9">
       <%= render 'shared/public/events_section' %>
-      <h3 class="mb-4 d-flex align-content-center">Latest Sermons
-        <%= link_to public_sermons_path, class: 'h6 ml-2' do %>
-          <i class="fas fa-external-link-alt"></i>
-        <% end %>
-      </h3>
-      <div class="row mb-4 mr-1">
-        <div class="col-4">
-          <div class="card">
-            <img class="card-img-top" src="http://fpoimg.com/1280x720?text=Preview" alt="">
-            <div class="card-body">
-              <h6 class="card-title mb-1">Sermon Title Goes Here</h6>
-              <small class="text-muted">Speaker Name</small>
-            </div>
-          </div>
-          <img  class="img-fluid rounded border border-dark mb-3"/>
-          <h6 class="mb-1"></h6>
-          <small></small>
-        </div>
-        <div class="col-4">
-          <div class="card">
-            <img class="card-img-top" src="http://fpoimg.com/1280x720?text=Preview" alt="">
-            <div class="card-body">
-              <h6 class="card-title mb-1">Sermon Title Goes Here</h6>
-              <small class="text-muted">Speaker Name</small>
-            </div>
-          </div>
-          <img  class="img-fluid rounded border border-dark mb-3"/>
-          <h6 class="mb-1"></h6>
-          <small></small>
-        </div>
-        <div class="col-4">
-          <div class="card">
-            <img class="card-img-top" src="http://fpoimg.com/1280x720?text=Preview" alt="">
-            <div class="card-body">
-              <h6 class="card-title mb-1">Sermon Title Goes Here</h6>
-              <small class="text-muted">Speaker Name</small>
-            </div>
-          </div>
-          <img  class="img-fluid rounded border border-dark mb-3"/>
-          <h6 class="mb-1"></h6>
-          <small></small>
-        </div>
-      </div>
+      <%= render 'shared/public/sermons_section' %>
     </div>
     <div class="col-3 p-4 bg-light border rounded">
       <h3 class="mb-4 d-flex align-content-center">Church News
