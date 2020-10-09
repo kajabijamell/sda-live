@@ -1,48 +1,12 @@
 <%= render 'shared/public/hero' %>
 <div class="container py-4">
   <div class="row">
-    <div class="col-9">
+    <div class="col-12 col-lg-9">
       <%= render 'shared/public/events_section' %>
       <%= render 'shared/public/sermons_section' %>
     </div>
-    <div class="col-3 p-4 bg-light border rounded">
-      <h3 class="mb-4 d-flex align-content-center">Church News
-        <%= link_to public_news_path, class: 'h6 ml-2' do %>
-          <i class="fas fa-external-link-alt"></i>
-        <% end %>
-      </h3>
-      <div class="row">
-        <div class="col-12 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link stretched-link">Read More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link stretched-link">Read More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link stretched-link">Read More</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="col-12 col-lg-3 p-4 m-xs-3 bg-light border rounded">
+      <%= render 'shared/public/news_sidebar' %>
     </div>
   </div>
 </div>
