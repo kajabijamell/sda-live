@@ -1,0 +1,14 @@
+<div class="row mb-4"> 
+  <%= render 'shared/public/section_heading', title: 'Latest Sermons', link: public_sermons_path %>
+  <% if @sermons.length > 0 %>
+    <% @sermons.each do |sermon| %>
+      <%= render 'shared/public/sermon_card', sermon: sermon  %>
+    <% end %>
+  <% else %>
+    <div class="col-12 mb-4">
+      <div class="card p-3">
+        <p class="card-text">No sermons at this time.</p>
+      </div>
+    </div>
+  <% end %>
+</div>
