@@ -1,9 +1,7 @@
-<div class="col-12 mb-4">
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title"><%= news.title %></h5>
-      <p class="card-text"><%= news.body%></p>
-      <a href="#" class="card-link stretched-link">Read More</a>
+      <h5 class="card-title"><%= article.title %></h5>
+      <p class="card-text"><%= article.body.truncate(75) %></p>
+      <%= link_to 'Learn More', public_article_path(article), class: 'card-link stretched-link' %>
     </div>
   </div>
-</div>
