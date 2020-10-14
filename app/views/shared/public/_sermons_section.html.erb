@@ -1,9 +1,11 @@
 <div class="row mb-4"> 
   <%= render 'shared/public/section_heading', title: 'Latest Sermons', link: public_sermons_path %>
   <% if @sermons.length > 0 %>
-    <% @sermons.each do |sermon| %>
-      <%= render 'shared/public/sermon_card', sermon: sermon  %>
-    <% end %>
+    <div class="col-12">
+      <% @sermons.each do |sermon| %>
+        <%= render 'shared/public/simple_sermon_card', sermon: sermon  %>
+      <% end %>
+    </div>
   <% else %>
     <div class="col-12 mb-4">
       <div class="card p-3">

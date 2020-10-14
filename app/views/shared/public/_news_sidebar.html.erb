@@ -3,7 +3,6 @@
     <i class="fas fa-external-link-alt"></i>
   <% end %>
 </h3>
-<div class="row">
   <% if @church.news.length > 0 %>
     <% @news.each do |article| %>
       <%= render 'shared/public/news_sidebar_card', article: article %>
@@ -15,4 +14,3 @@
       </div>
     </div>
   <% end %>
-</div>

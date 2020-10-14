@@ -1,9 +1,11 @@
 <div class="row mb-4"> 
   <%= render 'shared/public/section_heading', title: 'Upcoming Events', link: public_events_path %>
   <% if @church.events.length > 0 %>
-    <% @events.each do |event| %>
-      <%= render 'shared/public/event_card', event: event %>
-    <% end %>
+    <div class="col-12"> 
+      <% @events.each do |event| %>
+        <%= render 'shared/public/event_card', event: event %>
+      <% end %>
+    </div>
   <% else %>
     <div class="col-12 mb-4">
       <div class="card p-3">

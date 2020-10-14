@@ -1,10 +1,8 @@
-<%= link_to public_event_path(event), class: 'col-12 col-lg-6 mb-4'  do %>
-  <div class="card text-white">
-    <img src="<%= event.image.url %>" class="card-img" alt="...">
-    <div class="card-img-overlay d-flex flex-column justify-content-end">
-      <h5 class="card-title"><%= event.name %></h5>
-      <p class="card-text"><%= event.description.truncate(75) %></p>
-      <p class="card-text">Last updated <%= event.updated_at %> ago</p>
-    </div>
+<div class="event bg-light"><img src="<%= event.image.url %>" alt="" class="event-image img-fluid">
+  <div class="event-details">
+    <h4 class="event-title"><%= event.name %></h4>
+    <div class="event-date"><%= event.start_datetime %></div>
+    <div class="event-location"><%= event.location %></div>
+    <%= link_to  "Get Tickets", public_event_path(event), class: 'btn btn-primary' %>
   </div>
-<% end %>
+</div>
