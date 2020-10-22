@@ -1,0 +1,18 @@
+
+<div class="sermon-card bg-light col-12 col-lg-4">
+  <div class="sermon-video">
+    <div id="hls-player-<%= sermon.id %>" class="video"></div>
+    <script>
+        playerInstance = jwplayer('hls-player-<%= sermon.id %>');
+        playerInstance.setup({
+          file: '<%= raw(sermon.get_video_url) %>',
+          image: '<%= raw(sermon.get_thumbnail_url) %>',
+          controls: false
+        })
+    </script>
+  </div>
+  <div class="sermon-details">
+    <div class="sermon-card-title"><%= sermon.title %></div>
+    <div class="sermon-presenter"><%= sermon.speaker %></div>
+  </div>
+</div>
