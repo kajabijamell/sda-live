@@ -1,16 +1,20 @@
-<h3 class="mb-4 pb-2 d-flex align-content-center" style="border-bottom:1px solid #ddd;">Church News
-  <%= link_to public_news_path, class: 'h6 ml-2' do %>
-    <i class="fas fa-external-link-alt"></i>
-  <% end %>
-</h3>
-  <% if @church.news.length > 0 %>
-    <% @news.each do |article| %>
-      <%= render 'shared/public/news_sidebar_card', article: article %>
-    <% end %>
-  <% else %>
-    <div class="col-12 mb-4">
-      <div class="card p-3">
-        <p class="card-text">No news at this time.</p>
-      </div>
-    </div>
-  <% end %>
+<div class="card">
+  <div class="card-body">
+    <h5 class="mb-3 pb-2 d-flex align-content-center" style="border-bottom:1px solid #ddd;">Announcements
+      <%= link_to public_news_path, class: 'h6 ml-2' do %>
+        <i class="fas fa-external-link-alt"></i>
+      <% end %>
+    </h5>
+      <% if @church.news.length > 0 %>
+        <% @news.each do |article| %>
+          <%= render 'shared/public/news_sidebar_card', article: article %>
+        <% end %>
+      <% else %>
+        <div class="col-12 mb-4">
+          <div class="card p-3">
+            <p class="card-text">No news at this time.</p>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

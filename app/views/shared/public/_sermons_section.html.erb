@@ -1,11 +1,38 @@
 <div class="row mb-4"> 
-  <%= render 'shared/public/section_heading', title: 'Latest Sermons', link: public_sermons_path %>
+  <%= render 'shared/public/section_heading', title: 'Latest Broadcasts', link: public_sermons_path %>
   <% if @sermons.length > 0 %>
-    <div class="col-12">
-      <% @sermons.each do |sermon| %>
-        <%= render 'shared/public/simple_sermon_card', sermon: sermon  %>
-      <% end %>
-    </div>
+    <%# <div class="col-12"> %>
+      <%# @sermons.each do |sermon| %>
+        <%#= render 'shared/public/simple_sermon_card', sermon: sermon  %>
+      <%# end %>
+      <div class="col-12 col-lg-4">
+        <div class="card mb-3">
+          <img src="http://fpoimg.com/1280x720?text=Video" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title mb-1">Video Title</h5>
+            <p class="card-text"><small class="text-muted">Uploaded 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card mb-3">
+          <img src="http://fpoimg.com/1280x720?text=Video" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title mb-1">Video Title</h5>
+            <p class="card-text"><small class="text-muted">Uploaded 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card mb-3">
+          <img src="http://fpoimg.com/1280x720?text=Video" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title mb-1">Video Title</h5>
+            <p class="card-text"><small class="text-muted">Uploaded 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+    <%# </div> %>
   <% else %>
     <div class="col-12 mb-4">
       <div class="card p-3">
