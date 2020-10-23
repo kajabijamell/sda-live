@@ -1,0 +1,7 @@
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= event.name %></h5>
+      <p class="card-text mb-2"><%= event.start_datetime %></p>
+      <%= link_to 'More Info', public_event_path(event), class: 'card-link stretched-link' %>
+    </div>
+  </div>
