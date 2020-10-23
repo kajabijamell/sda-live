@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="mb-3 pb-2 d-flex align-content-center">Announcements
+      <%= link_to public_news_path, class: 'h6 ml-2' do %>
+        <i class="fas fa-external-link-alt"></i>
+      <% end %>
+    </h4>
+      <% if @church.news.length > 0 %>
+        <% @news.each do |article| %>
+          <%= render 'shared/public/news_section_card', article: article %>
+        <% end %>
+      <% else %>
+        <div class="col-12 mb-4">
+          <div class="card p-3">
+            <p class="card-text">No news at this time.</p>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
