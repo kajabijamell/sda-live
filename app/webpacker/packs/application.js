@@ -13,6 +13,13 @@ import '@fortawesome/fontawesome-free/js/all';
 
 // Added Cocoon
 require('../src/javascripts/cocoon');
+require('../src/javascripts/sb_admin');
+
+// Activate Feather icons
+const feather = require('feather-icons');
+document.addEventListener('turbolinks:load', function () {
+  feather.replace();
+});
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

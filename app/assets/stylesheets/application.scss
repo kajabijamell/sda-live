@@ -1,5 +1,4 @@
 //  Vendor
-@import 'bootstrap/scss/bootstrap';
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/solid';
@@ -9,14 +8,6 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 // Utilities and Helpers
 @import 'utilities/all';
-// Layout Styles
-@import 'layout/all';
-// Page Specific
-@import 'pages/all';
-// Components
-@import 'components/all';
-// Elements
-@import 'elements/all';
 
 .field_with_errors .message {
   color: #721c24;
