@@ -1,6 +1,16 @@
-<div class="welcome jumbotron jumbotron-fluid p-4 mb-0">
-  <div class="container">
-    <h1 class="display-5">Welcome Back, <%= current_user.fname %>!</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+<%= render partial: 'shared/page_header', locals: { 
+  title: 'Welcome Back!', 
+  subtitle: 'Simple online church management tool', 
+  icon: ''  } 
+%>
+<div class="container">  
+  <div class="row">
+    <%= render partial: 'shared/dashboard/action_card.html.erb', locals: { 
+      title: 'Sample Card', 
+      subtitle: 'Subtitle for the sample card', 
+      icon: '',
+      image: 'assets/img/freepik/browser-stats-pana.svg',
+      link: '/sermons'  } 
+    %> 
   </div>
 </div>
