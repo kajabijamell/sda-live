@@ -11,27 +11,15 @@
   <body>
   <% if current_user.present? %>
     <% if current_user.admin? %>
-      <div class="section dashboard">
+      <div id="dashboard" class="section">
         <div class="row no-gutters fill">
-          <div class="col-2">
+          <div class="col-auto h-100 d-none d-md-block">
             <%= render 'shared/sidebar' %>
           </div>
-          <% if content_for?(:context_content) %>
-            <main role="main" class="col-7 p-4 ml-auto">
-              <%= render partial: 'layouts/flash' %>
-              <%= yield %>
-            </main>
-          <div class="col-3">
-            <div class="context-menu bg-light">
-              <%= yield :context_content %>
-            </div>
-          </div>
-          <% else %>
-            <main role="main" class="col-10 p-4 ml-auto">
-              <%= render partial: 'layouts/flash' %>
-              <%= yield %>
-            </main>
-          <% end %>
+          <main role="main" class="col h-100">
+            <%= render partial: 'layouts/flash' %>
+            <%= yield %>
+          </main>
         </div>
       </div>
     <% else %>

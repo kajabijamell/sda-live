@@ -1,0 +1,14 @@
+#sidenav {
+  height: 100%;
+  border-radius: 0;
+  width: 15rem;
+  & .card-body {
+    max-height: none !important;
+    padding: 0.5rem;
+  }
+  & .nav-link {
+    display: inline-block;
+    padding: 1rem;
+    color: $headings-color;
+  }
+}

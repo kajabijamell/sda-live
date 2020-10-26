@@ -9,6 +9,10 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 // Utilities and Helpers
 @import 'utilities/all';
 
+// Layout
+@import 'layout/dashboard';
+@import 'layout/sidenav';
+
 .field_with_errors .message {
   color: #721c24;
 }

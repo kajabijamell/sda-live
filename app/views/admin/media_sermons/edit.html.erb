@@ -1,9 +1,7 @@
-<% content_for :context_content do %>
 <h4 class="mb-3">Edit <%= @admin_media_sermon.title %> </h4>
 <%= render 'form', admin_media_sermon: @admin_media_sermon %>
 <br/>
 <%= link_to 'Cancel', admin_media_sermons_path %>
-<% end %>
 
 <%= render partial: 'shared/page_heading', locals: { page_title: 'Sermons' } %>
 <div class="row">
