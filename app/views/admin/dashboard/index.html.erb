@@ -6,9 +6,23 @@
   %>
   <div class="row">
     <%= render partial: "shared/dashboard/action_card.html.erb", locals: { 
-      title: "Sample Card", 
-      subtitle: "Subtitle for the sample card", 
-      icon: "",
+      title: "News", 
+      subtitle: "Share news with your members", 
+      icon: "fa-bullhorn",
+      image: "assets/img/freepik/browser-stats-pana.svg",
+      link: "/news"  } 
+    %> 
+    <%= render partial: "shared/dashboard/action_card.html.erb", locals: { 
+      title: "Events", 
+      subtitle: "Promote events with your members", 
+      icon: "fa-calendar-day",
+      image: "assets/img/freepik/browser-stats-pana.svg",
+      link: "/events"  } 
+    %>
+    <%= render partial: "shared/dashboard/action_card.html.erb", locals: { 
+      title: "Media", 
+      subtitle: "Manage church videos on your website", 
+      icon: "fa-photo-video",
       image: "assets/img/freepik/browser-stats-pana.svg",
       link: "/sermons"  } 
     %> 
