@@ -1,16 +1,16 @@
-<%= render partial: 'shared/page_header', locals: { 
-  title: 'Welcome Back!', 
-  subtitle: 'Simple online church management tool', 
-  icon: ''  } 
-%>
-<div class="container">  
+<div class="container-fluid">  
+  <%= render partial: "shared/page_header", locals: { 
+    title: "Welcome Back, #{current_user.fname}!", 
+    subtitle: "Simple online church management tool", 
+    icon: "fa-pencil-ruler"  } 
+  %>
   <div class="row">
-    <%= render partial: 'shared/dashboard/action_card.html.erb', locals: { 
-      title: 'Sample Card', 
-      subtitle: 'Subtitle for the sample card', 
-      icon: '',
-      image: 'assets/img/freepik/browser-stats-pana.svg',
-      link: '/sermons'  } 
+    <%= render partial: "shared/dashboard/action_card.html.erb", locals: { 
+      title: "Sample Card", 
+      subtitle: "Subtitle for the sample card", 
+      icon: "",
+      image: "assets/img/freepik/browser-stats-pana.svg",
+      link: "/sermons"  } 
     %> 
   </div>
 </div>
