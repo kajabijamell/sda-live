@@ -1,9 +1,11 @@
 <div class="card">
+  <h5 class="card-header">Embed Code</h5>
   <div class="card-body">
-    <h4>Embed Code:</h4>
-    <pre id="embed-code">
-<%= "<iframe width='560' height='315' src='#{request.protocol}#{request.host}/embed/#{embed_code}' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" %>
-    </pre>
-
+    <p id="embed-code" class="mb-0">
+      <%= "<iframe width='100%' height='315' src='#{request.protocol}#{request.host}/embed/#{embed_code}' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>" %>
+    </p>
+  </div>
+  <div class="card-footer">
+    <a href="#">Copy Code</a>
   </div>
 </div>
