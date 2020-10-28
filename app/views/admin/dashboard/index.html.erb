@@ -5,6 +5,10 @@
     icon: "fa-pencil-ruler"  } 
   %>
   <div class="row">
+    <%= render partial: "shared/dashboard/live_feed.html.erb" %> 
+    <%= render partial: "shared/dashboard/events_list_card.html.erb" %>
+  </div>
+  <div class="row">
     <%= render partial: "shared/dashboard/action_card.html.erb", locals: { 
       title: "News", 
       subtitle: "Share news with your members", 
@@ -28,6 +32,5 @@
     %>
   </div>
   <div class="row">
-    <%= render partial: "shared/dashboard/live_feed.html.erb" %> 
   </div>
 </div>
