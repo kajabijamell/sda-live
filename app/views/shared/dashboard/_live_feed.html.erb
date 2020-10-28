@@ -1,32 +1,35 @@
-<div class="col-xl-12 mb-4">
-  <div class="card card-header-actions">
-      <div class="card-header">
-          Live Video Feed
-          <a href="/streams" class="btn btn-primary btn-sm">Edit Stream</a>
-      </div>
-      <div class="img-card-top">
-        <% if @admin_live_streams[0].status == 'active' %>
-          <video id="video" width="100%" controls></video>
-            <script>
-                poster = "https://image.mux.com/<%= @admin_live_streams[0].playback_id %>/thumbnail.jpg";
-                videoSrc = 'https://stream.mux.com/<%= @admin_live_streams[0].playback_id %>.m3u8';
-                let playerInstance = jwplayer('video');
-                playerInstance.setup({
-                    file: videoSrc,
-                    image: poster,
-                    controls: true
-                })
-            </script>
-            <div class="bg-dark text-light h-100 w-100">
-              <h3 id="no-live-stream" hidden>No live streams currently.</h3>
-            </div>
-          <% else %>
-            <div class="d-flex bg-dark h-100 w-100 justify-content-center align-content-center rounded-bottom" style="padding-top:56.25%">
-              <h3 id="no-live-stream" class="text-light">No live streams currently.</h3>
-            </div>
-          <% end %>
-      </div>
+
+<% if @admin_live_streams.length > 0 %>
+  <div class="col-xl-12 mb-4">
+    <div class="card card-header-actions">
+        <div class="card-header">
+            Live Video Feed
+            <a href="/streams" class="btn btn-primary btn-sm">Edit Stream</a>
+        </div>
+        <div class="img-card-top">
+          <% if @admin_live_streams[0].status == 'active' %>
+            <video id="video" width="100%" controls></video>
+              <script>
+                  poster = "https://image.mux.com/<%= @admin_live_streams[0].playback_id %>/thumbnail.jpg";
+                  videoSrc = 'https://stream.mux.com/<%= @admin_live_streams[0].playback_id %>.m3u8';
+                  let playerInstance = jwplayer('video');
+                  playerInstance.setup({
+                      file: videoSrc,
+                      image: poster,
+                      controls: true
+                  })
+              </script>
+              <div class="bg-dark text-light h-100 w-100">
+                <h3 id="no-live-stream" hidden>No live streams currently.</h3>
+              </div>
+            <% else %>
+              <div class="d-flex bg-dark h-100 w-100 justify-content-center align-content-center rounded-bottom" style="padding-top:56.25%">
+                <h3 id="no-live-stream" class="text-light">No live streams currently.</h3>
+              </div>
+            <% end %>
+        </div>
+    </div>
   </div>
-</div>
-
-
+<% else %>
+  <%= render partial: "shared/dashboard/live_upsell_banner" %> 
+<% end %>
