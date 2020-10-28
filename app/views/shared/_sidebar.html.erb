@@ -1,5 +1,5 @@
 <div id="sidenav" class="card card-scrollable">
-    <div class="card-header text-center text-black-50">Church Stream App</div>
+    <a href="/" class="h3 card-header text-center text-black-50 text-decoration-none">ChurchSnap</a>
     <div class="card-body">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -9,37 +9,37 @@
         </li>
         <li class="nav-item">
           <%= link_to admin_media_sermons_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-chalkboard-teacher nav-icon"></i> Sermons
+            <i class="mr-2 fas fa-photo-video nav-icon"></i> Media
           <% end %>
-        </li>
+        <!-- </li>
         <li class="nav-item">
           <%= link_to admin_news_index_path, class: 'nav-link' do %>
             <i class="mr-2 fas fa-bullhorn nav-icon"></i> News
           <% end %>
-        </li>
+        </li> -->
         <li class="nav-item">
           <%= link_to admin_events_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-calendar nav-icon"></i> Events
+            <i class="mr-2 fas fa-calendar-day nav-icon"></i> Schedule
           <% end %>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <%= link_to admin_media_images_path, class: 'nav-link' do %>
             <i class="mr-2 fas fa-images nav-icon"></i> Gallery
           <% end %>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <%= link_to admin_members_path, class: 'nav-link' do %>
             <i class="mr-2 fas fa-users nav-icon"></i> Members
           <% end %>
-        </li>
+        </li> -->
+        <!-- <li class="nav-item">
+          <%= link_to admin_live_streams_path, class: 'nav-link' do %>
+            <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
+          <% end %>
+        </li> -->
         <li class="nav-item">
           <%= link_to admin_website_edit_path, class: 'nav-link' do %>
             <i class="mr-2 fas fa-window-maximize nav-icon"></i> Website
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to admin_live_streams_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
           <% end %>
         </li>
         <li class="nav-item"> 
@@ -49,9 +49,15 @@
         </li>
       </ul>
     </div>
-    <div class="card-footer text-muted text-center p-0">
-      <h5 class="m-0">
-        <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure ?' }) %>
-      </h5>
+    <div class="text-muted text-center p-0">
+      <div class="card-footer text-muted text-center p-0">
+        <div class="text-center">
+          <div class="card-body">
+            <h5 class="m-0 p-3">
+              <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: '', data: { confirm: 'Are you sure ?' }) %>
+            </h5>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
