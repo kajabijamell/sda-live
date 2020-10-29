@@ -64,9 +64,9 @@
           controls: true
       })
   </script>
-  <h3 id="no-live-stream" hidden>No live streams currently.</h3>
+  <h3 id="no-live-stream" hidden>Stream is offline.</h3>
 <% else %>
-  <h3 id="no-live-stream">No live streams currently.</h3>
+  <h3 id="no-live-stream">Stream is offline.</h3>
 <% end %>
 <div id="embed-code-container">
   <%= render partial: 'admin/live_streams/embed_code_partial', locals: { embed_code: @admin_live_stream.embed_code } %>

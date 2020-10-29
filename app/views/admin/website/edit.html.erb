@@ -2,38 +2,45 @@
   <br/>
   <div class="row">
     <div class="col-12">
-      <%= form_for @website, url: admin_website_update_path, validate: true do |c| %>
-        <h4>Website Config</h4>
-        <div class="form-group">
-          <%= c.label :hero_image %>
-          <% if @website.hero_image.present? %>
-            <%= image_tag(@website.hero_image.url, height: 100) %>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h4>Website Config</h4>
+        </div>
+        <div class="card-body">
+          <%= form_for @website, url: admin_website_update_path, validate: true do |c| %>
+            <div class="form-group">
+              <%= c.label :hero_image %>
+              <% if @website.hero_image.present? %>
+                <%= image_tag(@website.hero_image.url, height: 100) %>
+              <% end %>
+              <%= c.file_field :hero_image, class: 'form-control', validate: { presence: true }  %>
+            </div>
+            <div class="form-group">
+              <%= c.label :primary_color %>
+              <%= c.color_field :primary_color, class: 'form-control'  %>
+            </div>
+            <div class="form-group">
+              <%= c.label :heading_font %>
+              <%= c.select :heading_font, options_for_select(Admin::Website::FONTS.keys), {}, class: 'form-control'  %>
+            </div>
+            <div class="form-group">
+              <%= c.label :body_font %>
+              <%= c.select :body_font, options_for_select(Admin::Website::FONTS.keys), {}, class: 'form-control'  %>
+            </div>
+            <div class="form-group">
+              <%= c.label :youtube_live %>
+              <%= c.text_field :youtube_live, class: 'form-control'  %>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+          <%= c.submit 'Save', class: 'btn btn-primary' %>
           <% end %>
-          <%= c.file_field :hero_image, class: 'form-control', validate: { presence: true }  %>
         </div>
-        <div class="form-group">
-          <%= c.label :primary_color %>
-          <%= c.color_field :primary_color, class: 'form-control'  %>
-        </div>
-        <div class="form-group">
-          <%= c.label :heading_font %>
-          <%= c.select :heading_font, options_for_select(Admin::Website::FONTS.keys), {}, class: 'form-control'  %>
-        </div>
-        <div class="form-group">
-          <%= c.label :body_font %>
-          <%= c.select :body_font, options_for_select(Admin::Website::FONTS.keys), {}, class: 'form-control'  %>
-        </div>
-        <div class="form-group">
-          <%= c.label :youtube_live %>
-          <%= c.text_field :youtube_live, class: 'form-control'  %>
-        </div>
-        <div class="form-group">
-          <%= c.label :subdomain %>
-          <%= c.text_field :subdomain, value: @website.subdomain || current_user.subdomain, class: 'form-control'  %>
-          <small>Changing this will log you out and you need to login into your new domain.</small>
-        </div>
-        <%= c.submit 'Save', class: 'btn btn-primary' %>
-      <% end %>
+      </div>
+      
+    </div>
+    <div class="col-12">
+      <%= render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
     </div>
   </div>
 </div>

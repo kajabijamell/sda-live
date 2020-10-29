@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-12">
-    <%= form_for current_user, url: admin_update_my_subdomain_path, validate: true do |c| %>
-      <h4>Subdomain</h4>
-      <div class="form-group">
-        <%= c.label :subdomain %>
-        <%= c.text_field :subdomain, value: current_user.subdomain, class: 'form-control'  %>
-        <small>Changing this will log you out and you need to login into your new domain.</small>
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4>Subdomain</h4>
       </div>
-      <%= c.submit 'Save', class: 'btn btn-primary' %>
-    <% end %>
+      <div class="card-body">
+        <%= form_for current_user, url: admin_update_my_subdomain_path, validate: true do |c| %>
+          <div class="form-group">
+            <%= c.label :subdomain %>
+            <%= c.text_field :subdomain, value: current_user.subdomain, class: 'form-control'  %>
+            <small>Changing this will log you out and you need to login into your new domain.</small>
+          </div>
+      </div>
+      <div class="card-footer text-muted">
+        <%= c.submit 'Save', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

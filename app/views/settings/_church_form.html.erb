@@ -1,43 +1,51 @@
 <div class="row">
   <div class="col-12">
-    <%= form_for church, url: admin_update_my_church_path do |c| %>
-      <h4>Church Info</h4>
-      <div class="form-group">
-        <%= c.label :logo %>
-        <% if church.logo.present? %>
-          <%= image_tag(church.logo.url, height: 100) %>
+    <div class="card mb-4">
+      <div class="card-header">
+        <h4>Church Info</h4>
+      </div>
+      <div class="card-body">
+        <%= form_for church, url: admin_update_my_church_path do |c| %>
+          <div class="form-group">
+            <%= c.label :logo %>
+            <% if church.logo.present? %>
+              <%= image_tag(church.logo.url, height: 100) %>
+            <% end %>
+            <%= c.file_field :logo, class: 'form-control', validate: { presence: true }  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :name %>
+            <%= c.text_field :name, class: 'form-control'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :address %>
+            <%= c.text_area :address, class: 'form-control', style: 'resize: none;'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :phone_number %>
+            <%= c.text_field :phone_number, class: 'form-control'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :fb, 'Facebook Page' %>
+            <%= c.text_field :fb, class: 'form-control'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :youtube, 'Youtube Channel' %>
+            <%= c.text_field :youtube, class: 'form-control'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :instagram %>
+            <%= c.text_field :instagram, class: 'form-control'  %>
+          </div>
+          <div class="form-group">
+            <%= c.label :give_link %>
+            <%= c.text_field :give_link, class: 'form-control'  %>
+          </div>
+      </div>
+      <div class="card-footer text-muted">
+        <%= c.submit 'Save', class: 'btn btn-primary' %>
         <% end %>
-        <%= c.file_field :logo, class: 'form-control', validate: { presence: true }  %>
       </div>
-      <div class="form-group">
-        <%= c.label :name %>
-        <%= c.text_field :name, class: 'form-control'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :address %>
-        <%= c.text_area :address, class: 'form-control', style: 'resize: none;'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :phone_number %>
-        <%= c.text_field :phone_number, class: 'form-control'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :fb, 'Facebook Page' %>
-        <%= c.text_field :fb, class: 'form-control'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :youtube, 'Youtube Channel' %>
-        <%= c.text_field :youtube, class: 'form-control'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :instagram %>
-        <%= c.text_field :instagram, class: 'form-control'  %>
-      </div>
-      <div class="form-group">
-        <%= c.label :give_link %>
-        <%= c.text_field :give_link, class: 'form-control'  %>
-      </div>
-      <%= c.submit 'Save', class: 'btn btn-primary' %>
-    <% end %>
+    </div>
   </div>
 </div>
