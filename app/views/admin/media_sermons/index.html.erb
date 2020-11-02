@@ -1,5 +1,8 @@
 <div class="container-fluid">  
-  <%= render 'shared/simple_page_header' %>
+  <%= render partial: 'shared/simple_page_header', locals: { 
+    title: 'Media Library',
+    btn_text: 'Upload Video',
+    icon: 'fa-photo-video' } %>
   <div class="row">
     <div class="col-12">
       <% if @admin_media_sermons.length > 0 %>
