@@ -1,75 +1,80 @@
 <%= form_with(class: 'form', model: admin_media_sermon, local: true) do |form| %>
-  <% if admin_media_sermon.id.blank? %>
-    <div class="form-group">
-      <%= form.label :video %>
-      <br/>
-      <% if admin_media_sermon.get_video_url.present? %>
-        <div id="video-player"></div>
-        <script>
-            playerInstance = jwplayer('video-player');
-            playerInstance.setup({
-                file: '<%= raw(admin_media_sermon.get_video_url) %>',
-                image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
-                height: 300,
-                controls: true
-            })
-        </script>
+<div class="card mt-4 mb-3">
+  <div class="card-body">
+      <% if admin_media_sermon.id.blank? %>
+        <div class="form-group">
+          <%= form.label :video %>
+          <br/>
+          <% if admin_media_sermon.get_video_url.present? %>
+            <div id="video-player"></div>
+            <script>
+                playerInstance = jwplayer('video-player');
+                playerInstance.setup({
+                    file: '<%= raw(admin_media_sermon.get_video_url) %>',
+                    image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
+                    height: 300,
+                    controls: true
+                })
+            </script>
+          <% end %>
+          <%= form.file_field :video, accept: 'video/mp4'  %>
+        </div>
       <% end %>
-      <%= form.file_field :video, accept: 'video/mp4'  %>
+      <div class="form-group">
+        <%= form.label :thumbnail %>
+        <br/>
+        <% if admin_media_sermon.get_thumbnail_url.present? %>
+          <%= image_tag(admin_media_sermon.get_thumbnail_url, height: 100) %>
+        <br/>
+        <br/>
+        <% end %>
+        <%= form.file_field :thumbnail, accept: 'image/*'  %>
+        <br/>
+      </div>
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :speaker %>
+        <%= form.text_field :speaker, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :scripture %>
+        <%= form.text_field :scripture, class: 'form-control' %>
+      </div>
+
+      <!-- <div class="form-group mb-0">
+        <%= form.check_box :published %>
+        <%= form.label :published %>
+      </div>
+      -->
+      <!-- Disable HLS   
+      <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+      <script>
+          document.addEventListener('turbolinks:load', function() {
+              let videos = document.getElementsByClassName('video');
+              length = videos.length
+              for (let i = 0; i < length; i++) {
+                  let videoSrc = videos[i].src;
+                  if (Hls.isSupported() && videoSrc.indexOf('.m3u8') !== -1) {
+                      const hls = new Hls();
+                      hls.loadSource(videoSrc);
+                      hls.attachMedia(videos[i]);
+                  } else if (videos[i].canPlayType('application/vnd.apple.mpegurl')) {
+                      videos[i].src = videoSrc;
+                  }
+              }
+          });
+      </script>
+      -->
+  </div>
+  <div class="card-footer text-muted">
+    <div class="actions">
+      <%= form.submit 'Save', class: 'btn btn-primary' %>
     </div>
+  </div>
   <% end %>
-  <div class="form-group">
-    <%= form.label :thumbnail %>
-    <br/>
-    <% if admin_media_sermon.get_thumbnail_url.present? %>
-      <%= image_tag(admin_media_sermon.get_thumbnail_url, height: 100) %>
-    <br/>
-    <br/>
-    <% end %>
-    <%= form.file_field :thumbnail, accept: 'image/*'  %>
-    <br/>
-  </div>
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :speaker %>
-    <%= form.text_field :speaker, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :scripture %>
-    <%= form.text_field :scripture, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.check_box :published %>
-    <%= form.label :published %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<!-- Disable HLS   
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script>
-    document.addEventListener('turbolinks:load', function() {
-        let videos = document.getElementsByClassName('video');
-        length = videos.length
-        for (let i = 0; i < length; i++) {
-            let videoSrc = videos[i].src;
-            if (Hls.isSupported() && videoSrc.indexOf('.m3u8') !== -1) {
-                const hls = new Hls();
-                hls.loadSource(videoSrc);
-                hls.attachMedia(videos[i]);
-            } else if (videos[i].canPlayType('application/vnd.apple.mpegurl')) {
-                videos[i].src = videoSrc;
-            }
-        }
-    });
-</script>
--->
+</div>
