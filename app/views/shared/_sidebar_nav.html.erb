@@ -1,5 +1,7 @@
 <div id="sidenav" class="card card-scrollable">
-    <a href="/" class="h3 card-header text-center text-black-50 text-decoration-none">ChurchSnap</a>
+    <div class="card-header d-flex justify-content-center align-items-center">
+      <a href="/" class="h3 text-center text-black-50 text-decoration-none m-0">SDA Live</a><span class="badge badge-pill badge-info ml-2">beta</span>
+    </div>
     <div class="card-body">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -9,7 +11,7 @@
         </li>
         <li class="nav-item">
           <%= link_to admin_media_sermons_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-photo-video nav-icon"></i> Media
+            <i class="mr-2 fas fa-photo-video nav-icon"></i> Library
           <% end %>
         <!-- </li>
         <li class="nav-item">
@@ -33,13 +35,13 @@
           <% end %>
         </li> -->
         <!-- <li class="nav-item">
-          <%= link_to admin_live_streams_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
+          <%= link_to admin_website_edit_path, class: 'nav-link' do %>
+            <i class="mr-2 fas fa-window-maximize nav-icon"></i> Website
           <% end %>
         </li> -->
         <li class="nav-item">
-          <%= link_to admin_website_edit_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-window-maximize nav-icon"></i> Website
+          <%= link_to admin_live_streams_path, class: 'nav-link' do %>
+            <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
           <% end %>
         </li>
         <li class="nav-item"> 
