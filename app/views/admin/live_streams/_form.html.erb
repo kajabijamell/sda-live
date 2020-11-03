@@ -1,29 +1,33 @@
 <div class="row">
   <div class="col-12">
-    <%= form_with(model: admin_live_stream, local: true, validate: true) do |form| %>
+    <div class="card my-4">
+      <div class="card-body">
+        <%= form_with(model: admin_live_stream, local: true, validate: true) do |form| %>
 
-      <div class="form-group">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: 'form-control' %>
-      </div>
+          <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: 'form-control' %>
+          </div>
 
-      <!--<div class="form-group">
-        <%#= form.label :playback_policy %>
-        <%#= form.select :playback_policy, Admin::LiveStream::PLAYBACK_POLICIES, {}, class: 'form-control', validate: false %>
-      </div>-->
-      <div class="row">
-        <%= form.fields_for :admin_simulcast_targets do |target| %>
-          <%= render 'admin/live_streams/admin_simulcast_target_fields', f: target %>
+          <!--<div class="form-group">
+            <%#= form.label :playback_policy %>
+            <%#= form.select :playback_policy, Admin::LiveStream::PLAYBACK_POLICIES, {}, class: 'form-control', validate: false %>
+          </div>-->
+          <div class="row">
+            <%= form.fields_for :admin_simulcast_targets do |target| %>
+              <%= render 'admin/live_streams/admin_simulcast_target_fields', f: target %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Add target', form, :admin_simulcast_targets, class: 'btn btn-primary' %>
+            </div>
+          </div>
+          <br/>
+          <br/>
+          <div class="actions">
+            <%= form.submit 'Create Live Stream', class: 'btn btn-primary' %>
+          </div>
         <% end %>
-        <div class="links">
-          <%= link_to_add_association 'Add target', form, :admin_simulcast_targets, class: 'btn btn-primary' %>
-        </div>
       </div>
-      <br/>
-      <br/>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

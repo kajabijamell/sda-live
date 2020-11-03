@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <% if current_user.admin? %>
-    <%= render partial: '/settings/church_form', locals: { church: current_user.church }  %>
-    <%= render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
+    <%# render partial: '/settings/church_form', locals: { church: current_user.church }  %>
+    <%# render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
   <% end %>
   <div class="row">
     <div class="col-12">
       <%= form_for current_user, url: settings_profile_path do |f| %>
-        <div class="card mb-4">
+        <div class="card my-4">
           <div class="card-header">
             <h3>Edit Profile</h3>
           </div>

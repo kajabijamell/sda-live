@@ -1,9 +1,9 @@
-<h1>Streams</h1>
-
-<%= link_to 'Add New Stream', new_admin_live_stream_path, class: 'btn btn-primary' %>
-<br/>
-<br/>
-
+<div class="container-fluid">
+<%= render partial: 'shared/simple_page_header', locals: { 
+    title: 'Streams',
+    btn_text: 'Add New Stream',
+    link: new_admin_live_stream_path,
+    icon: 'fa-tv' } %>
 <table class="table">
   <thead>
     <tr>
@@ -20,9 +20,10 @@
         <td><%= admin_live_stream.id %></td>
         <td><%= admin_live_stream.name %></td>
         <td><%= admin_live_stream.playback_policy %></td>
-        <td><%= link_to 'Show', admin_live_stream %></td>
-        <td><%= link_to 'Destroy', admin_live_stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', admin_live_stream %></td>
+        <td><%= link_to 'Delete', admin_live_stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

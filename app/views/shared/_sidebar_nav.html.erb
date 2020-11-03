@@ -1,6 +1,6 @@
-<div id="sidenav" class="card card-scrollable">
-    <div class="card-header d-flex justify-content-center align-items-center">
-      <a href="/" class="h3 text-center text-black-50 text-decoration-none m-0">SDA Live</a><span class="badge badge-pill badge-info ml-2">beta</span>
+<div id="sidenav" class="card card-scrollable rounded-0 border-0">
+    <div class="card-header d-flex rounded-0  justify-content-center align-items-center bg-dark">
+      <a href="/" class="h3 text-center text-white-50 text-decoration-none m-0">SDA Live</a><span class="badge badge-pill badge-info ml-2">beta</span>
     </div>
     <div class="card-body">
       <ul class="nav flex-column">
@@ -56,7 +56,7 @@
         <div class="text-center">
           <div class="card-body">
             <h5 class="m-0 p-3">
-              <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: '', data: { confirm: 'Are you sure ?' }) %>
+              <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'text-body', data: { confirm: 'Are you sure ?' }) %>
             </h5>
           </div>
         </div>

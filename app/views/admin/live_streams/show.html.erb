@@ -1,74 +1,76 @@
-<p>
-  <strong>Name:</strong>
-  <%= @admin_live_stream.name %>
-</p>
+<div class="container-fluid">  
+  <p>
+    <strong>Name:</strong>
+    <%= @admin_live_stream.name %>
+  </p>
 
-<p>
-  <strong>Playback policy:</strong>
-  <%= @admin_live_stream.playback_policy %>
-</p>
+  <p>
+    <strong>Playback policy:</strong>
+    <%= @admin_live_stream.playback_policy %>
+  </p>
 
-<p>
-  <strong>Endpoint to Broadcast:</strong>
-  <div><span class="badge badge-secondary">rtmp://global-live.mux.com:5222/app</span> (Standard RTMP entry point. Compatible with the majority of streaming applications and services.)</div>
-  <div><span class="badge badge-secondary">rtmps://global-live.mux.com:443/app</span> (Secure RTMPS entry point. Compatible with less streaming applications, but offers a higher level of security.)</div>
-</p>
+  <p>
+    <strong>Endpoint to Broadcast:</strong>
+    <div><span class="badge badge-secondary">rtmp://global-live.mux.com:5222/app</span> (Standard RTMP entry point. Compatible with the majority of streaming applications and services.)</div>
+    <div><span class="badge badge-secondary">rtmps://global-live.mux.com:443/app</span> (Secure RTMPS entry point. Compatible with less streaming applications, but offers a higher level of security.)</div>
+  </p>
 
-<p>
-  <strong>Stream Key:</strong>
-  <%= @admin_live_stream.mux_stream_key %>
-</p>
+  <p>
+    <strong>Stream Key:</strong>
+    <%= @admin_live_stream.mux_stream_key %>
+  </p>
 
-<div class="row">
-  <div class="col-6">
-    <h3>Other Targets</h3>
+  <div class="row">
+    <div class="col-6">
+      <h3>Other Targets</h3>
+    </div>
+    <div class="col-6">
+      <%= link_to 'Add Target', admin_new_target_path, class: 'btn btn-primary float-right' %>
+    </div>
   </div>
-  <div class="col-6">
-    <%= link_to 'Add Target', admin_new_target_path, class: 'btn btn-primary float-right' %>
-  </div>
-</div>
-<br/>
-<table class="table">
-  <thead>
-  <tr>
-    <th>Platform</th>
-    <th>Endpoint</th>
-    <th>Stream Key</th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @admin_live_stream.admin_simulcast_targets.each do |simulcast_target| %>
+  <br/>
+  <table class="table">
+    <thead>
     <tr>
-      <td><%= simulcast_target.platform %></td>
-      <td><%= simulcast_target.url %></td>
-      <td><%= simulcast_target.stream_key %></td>
-      <td>
-        <%= link_to 'Delete', admin_destroy_target_path(target_id: simulcast_target.id), class: 'btn btn-danger',
-        data: { confirm: 'Are you sure ?' }, method: :delete %>
-      </td>
+      <th>Platform</th>
+      <th>Endpoint</th>
+      <th>Stream Key</th>
+      <th></th>
     </tr>
+    </thead>
+
+    <tbody>
+    <% @admin_live_stream.admin_simulcast_targets.each do |simulcast_target| %>
+      <tr>
+        <td><%= simulcast_target.platform %></td>
+        <td><%= simulcast_target.url %></td>
+        <td><%= simulcast_target.stream_key %></td>
+        <td>
+          <%= link_to 'Delete', admin_destroy_target_path(target_id: simulcast_target.id), class: 'btn btn-danger',
+          data: { confirm: 'Are you sure ?' }, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <video id="video" width="50%" controls></video>
+  <% if @admin_live_stream.status == 'active' %>
+    <script>
+        poster = "https://image.mux.com/<%= @admin_live_stream.playback_id %>/thumbnail.jpg";
+        videoSrc = 'https://stream.mux.com/<%= @admin_live_stream.playback_id %>.m3u8';
+        let playerInstance = jwplayer('video');
+        playerInstance.setup({
+            file: videoSrc,
+            image: poster,
+            controls: true
+        })
+    </script>
+    <h3 id="no-live-stream" hidden>Stream is offline.</h3>
+  <% else %>
+    <h3 id="no-live-stream">Stream is offline.</h3>
   <% end %>
-  </tbody>
-</table>
-<video id="video" width="50%" controls></video>
-<% if @admin_live_stream.status == 'active' %>
-  <script>
-      poster = "https://image.mux.com/<%= @admin_live_stream.playback_id %>/thumbnail.jpg";
-      videoSrc = 'https://stream.mux.com/<%= @admin_live_stream.playback_id %>.m3u8';
-      let playerInstance = jwplayer('video');
-      playerInstance.setup({
-          file: videoSrc,
-          image: poster,
-          controls: true
-      })
-  </script>
-  <h3 id="no-live-stream" hidden>Stream is offline.</h3>
-<% else %>
-  <h3 id="no-live-stream">Stream is offline.</h3>
-<% end %>
-<div id="embed-code-container">
-  <%= render partial: 'admin/live_streams/embed_code_partial', locals: { embed_code: @admin_live_stream.embed_code } %>
+  <div id="embed-code-container">
+    <%= render partial: 'admin/live_streams/embed_code_partial', locals: { embed_code: @admin_live_stream.embed_code } %>
+  </div>
+  <%= link_to 'Back', admin_live_streams_path %>
 </div>
-<%= link_to 'Back', admin_live_streams_path %>
