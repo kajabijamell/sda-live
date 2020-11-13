@@ -5,45 +5,13 @@
     link: new_admin_media_sermon_path,
     icon: 'fa-photo-video' } %>
   <div class="row">
-    <%= render 'sermon' %>
     <div class="col-12">
       <% if @admin_media_sermons.length > 0 %>
         <% @admin_media_sermons.in_groups_of(3).each do |group| %>
           <div class="row">
             <% group.each do |admin_media_sermon| %>
               <% if admin_media_sermon.present? %>
-                <div class="col-4 mb-4">
-                  <div class="card rounded-lg overflow-hidden">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <h4 class="m-0"><%= admin_media_sermon.title %></h4>
-                        <%= link_to edit_admin_media_sermon_path(admin_media_sermon), class: 'btn btn-light' do %>
-                          <i class="fas fa-edit ml-1"></i>
-                        <% end %>
-                    </div>
-                    <% if admin_media_sermon.get_video_url.present? %>
-                      <div id="video-player-<%= admin_media_sermon.id %>"></div>
-                      <script>
-                          playerInstance = jwplayer('video-player-<%= admin_media_sermon.id %>');
-                          playerInstance.setup({
-                              file: '<%= raw(admin_media_sermon.get_video_url) %>',
-                              image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
-                              controls: false
-                          })
-                      </script>
-                    <% end %>
-                    <div class="card-body"><%= admin_media_sermon.get_video_url %></div>
-                    <div class="card-footer">
-                      <% if admin_media_sermon.video.present? %>
-                      <%= link_to admin_media_sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'btn btn-light btn-sm', target: '_blank' do %>
-                        Download<i class="fas fa-download ml-2"></i> 
-                      <% end %>
-                      <% end %>
-                      <%= link_to admin_media_sermon, method: :delete, class: 'btn btn-light btn-sm', data: { confirm: 'Are you sure ?' }  do %>
-                        Delete<i class="fas fa-trash ml-2"></i>  
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
+                <%= render 'sermon', sermon: admin_media_sermon %>
               <% end %>
             <% end %>
           </div>

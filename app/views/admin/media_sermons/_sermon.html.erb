@@ -1,48 +1,61 @@
 <div class="col-md-6 col-lg-4 mb-4">  
   <div class="card card-header-actions">
-      <div class="card-header text-dark">
-          Sermon Title
-          <div class="dropdown no-caret">
-            <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i data-feather="more-vertical"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right animated--fade-in-up">
-              <a class="dropdown-item" href="javascript:void(0);">
-                <div class="dropdown-item-icon">
-                  <i data-feather="edit"></i>
-                </div>
-                Edit
-              </a>
-              <a class="dropdown-item" href="javascript:void(0)" data-copy data-url="[ video url goes here ]">
-                <div class="dropdown-item-icon">
-                  <i data-feather="copy"></i>
-                </div>
-                Copy Url
-              </a>
-              <a class="dropdown-item" href="javascript:void(0);">
-                <div class="dropdown-item-icon">
-                  <i data-feather="download"></i>
-                </div>
-                Download
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="javascript:void(0);">
-                <div class="dropdown-item-icon">
-                  <i data-feather="trash-2"></i>
-                </div>
-                Delete
-              </a>
+    <div class="card-header text-dark">
+      <%= sermon.title %>
+      <div class="dropdown no-caret">
+        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i data-feather="more-vertical"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right animated--fade-in-up">
+          <%= link_to edit_admin_media_sermon_path(sermon), class: 'dropdown-item' do %>
+            <div class="dropdown-item-icon">
+              <i data-feather="edit"></i>
             </div>
-          </div>
-      </div>
-      <img src="http://fpoimg.com/1280x720?text=Video Placeholder" width="100%" />
-      <div class="card-footer d-flex align-items-center justify-content-between">
-        <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="customSwitch1">
-          <label class="custom-control-label" for="customSwitch1">Published</label>
+            Edit
+          <% end %>
+          <button class="dropdown-item" data-copy data-url="<%= sermon.get_video_url %>">
+            <div class="dropdown-item-icon">
+              <i data-feather="copy"></i>
+            </div>
+            Copy Url
+          </button>
+          <% if sermon.video.present? %>
+            <%= link_to sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'dropdown-item', target: '_blank' do %>
+              <div class="dropdown-item-icon">
+                <i data-feather="download"></i>
+              </div>
+              Download
+            <% end %>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <%= link_to sermon, method: :delete, class: 'dropdown-item', data: { confirm: 'Are you sure ?' }  do %>
+            <div class="dropdown-item-icon">
+              <i data-feather="trash-2"></i>
+            </div>
+            Delete
+          <% end %>
         </div>
-        <small class="m-0 text-muted">Upload Date: 11/11/2020</small>
       </div>
+    </div>
+    <% if sermon.get_video_url.present? %>
+      <div id="video-player-<%= sermon.id %>"></div>
+      <script>
+        playerInstance = jwplayer('video-player-<%= sermon.id %>');
+        playerInstance.setup({
+          file: '<%= raw(sermon.get_video_url) %>',
+          image: '<%= raw(sermon.get_thumbnail_url) %>',
+          controls: false
+        })
+      </script>
+    <% end %>
+    <div class="card-footer d-flex align-items-center justify-content-between">
+      <%= form_with(class: 'form', model: sermon, local: true) do |form| %>
+        <div class="custom-control custom-switch">
+          <%= form.check_box :published, { id: sermon.id, class: 'custom-control-input', onchange: 'this.form.submit()' } %>
+          <label class="custom-control-label" for="<%= sermon.id %>">Published</label>
+        </div>
+      <% end %>
+      <small class="m-0 text-muted">Upload Date: <%= sermon.created_at.strftime("%m/%d/%Y") %></small>
+    </div>
   </div>
 </div>
-
