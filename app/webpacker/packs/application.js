@@ -14,6 +14,7 @@ import '@fortawesome/fontawesome-free/js/all';
 // Added Cocoon
 require('../src/javascripts/cocoon');
 require('../src/javascripts/sb_admin');
+require('../src/javascripts/sermon_copy');
 
 // Activate Feather icons
 const feather = require('feather-icons');
