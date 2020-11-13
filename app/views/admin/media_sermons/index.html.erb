@@ -5,6 +5,7 @@
     link: new_admin_media_sermon_path,
     icon: 'fa-photo-video' } %>
   <div class="row">
+    <%= render 'sermon' %>
     <div class="col-12">
       <% if @admin_media_sermons.length > 0 %>
         <% @admin_media_sermons.in_groups_of(3).each do |group| %>
