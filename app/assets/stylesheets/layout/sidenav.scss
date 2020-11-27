@@ -6,13 +6,47 @@
   height: 100%;
   border-radius: 0;
   width: 15rem;
+  & .logo{
+    font-size:22px;
+  }
+  & .badge{
+    font-weight:700;
+  }
+  & .profile-setting{
+    background:#2d4ea8;
+    & .signout{
+      color:#8da3de;
+      font-weight:500;
+    }
+  }
   & .card-body {
     max-height: none !important;
     padding: 0.5rem;
+  & .nav-link{
+     color:#4878fc;
+     &:hover{
+      background:#8dabff;
+      color:#fff;
+      border-radius:50px;
+     }
+     &.active{
+      background:#8dabff;
+      color:#fff;
+     } 
+    }
   }
+
   & .nav-link {
     display: inline-block;
-    padding: 1rem;
+    padding: 0.68rem 1.5rem;
     color: $headings-color;
+    font-weight:500;
+  }
+  &.card{
+    background:#ebf1ff;
+  }
+  & .card-header{
+    background:#2d4ea8;
+    border-bottom: solid 1px #6788e1;
   }
 }

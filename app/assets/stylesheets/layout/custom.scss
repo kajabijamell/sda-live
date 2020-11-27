@@ -1,0 +1,11 @@
+.header-bg{
+	background:#4878fc url(/assets/img/bg_header.png)no-repeat;
+	background-position: 117% -142px;
+  background-size: 560px;
+	&.pb-20{
+		padding-bottom:10rem;
+	}
+}
+.mt-n20{
+	margin-top:-10rem;
+}
