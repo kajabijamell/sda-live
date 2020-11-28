@@ -1,0 +1,21 @@
+<header class="page-header header-bg pb-20">
+  <div class="container-fluid">
+    <div class="page-header-content pt-4 pb-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-auto">
+          <h1 class="page-header-title text-white">
+            <% if local_assigns[:icon] != ''  %>
+              <div class="page-header-icon">
+                <i class="fas fa-xs <%= icon %> nav-icon mr-1"></i>
+              </div>
+            <% end %>
+            <%= title %>
+          </h1>
+          <% if local_assigns[:subtitle]  %>
+          <div class="page-header-subtitle"><%= subtitle %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
