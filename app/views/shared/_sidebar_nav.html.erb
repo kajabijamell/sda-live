@@ -1,61 +1,66 @@
-<div id="sidenav" class="card card-scrollable rounded-0 border-0">
-    <div class="card-header d-flex rounded-0  justify-content-center align-items-center">
-      <a href="/" class="h3 text-center text-white text-decoration-none m-0 logo">SDA Live</a><span class="badge badge-pill badge-info ml-1">beta</span>
-    </div>
-    <div class="profile-setting d-flex align-items-center px-3 py-3">
-      <img class="user-img" src="assets/img/img_user.png">
-      <div class="user-details ml-3">
-        <h6 class="mb-1 text-white">ProfileSetting</h6>
-        <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'signout', data: { confirm: 'Are you sure ?' }) %>
+<div id="sidenav-outer" class="collapse d-md-block">
+  <div id="sidenav" class="card card-scrollable rounded-0 border-0">
+      <div class="card-header d-flex rounded-0  justify-content-center align-items-center">
+        <a href="/" class="h3 text-center text-white text-decoration-none m-0 logo">SDA Live</a><span class="badge badge-pill badge-info ml-1">beta</span>
       </div>
-    </div>
-    <div class="card-body px-3 pt-4">
-      <ul class="nav flex-column">
-        <li class="nav-item my-2">
-          <%= link_to root_path, class: 'nav-link rounded-pill w-100 active' do %>
-            <i class="mr-2 fas fa-home nav-icon"></i> Dashboard
-          <% end %>
-        </li>
-        <!-- <li class="nav-item">
-          <%= link_to admin_news_index_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-bullhorn nav-icon"></i> News
-          <% end %>
-        </li> -->
-        <!-- <li class="nav-item">
-          <%= link_to admin_events_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-calendar-day nav-icon"></i> Schedule
-          <% end %>
-        </li> -->
-        <li class="nav-item my-1">
-          <%= link_to admin_media_sermons_path, class: 'nav-link rounded-pill w-100' do %>
-            <i class="mr-2 fas fa-file-video nav-icon"></i> Video Library
-          <% end %>
-        </li>
-        <!-- <li class="nav-item">
-          <%= link_to admin_media_images_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-images nav-icon"></i> Gallery
-          <% end %>
-        </li> -->
-        <!-- <li class="nav-item">
-          <%= link_to admin_members_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-users nav-icon"></i> Members
-          <% end %>
-        </li> -->
-        <!-- <li class="nav-item">
-          <%= link_to admin_website_edit_path, class: 'nav-link' do %>
-            <i class="mr-2 fas fa-window-maximize nav-icon"></i> Website
-          <% end %>
-        </li> -->
-        <li class="nav-item my-1">
-          <%= link_to admin_live_streams_path, class: 'nav-link rounded-pill w-100' do %>
-            <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
-          <% end %>
-        </li>
-        <li class="nav-item my-1"> 
-          <%= link_to settings_profile_path, class: 'nav-link rounded-pill w-100' do %>
-            <i class="mr-2 fas fa-cog nav-icon"></i> Settings 
-          <% end %>
-        </li>
-      </ul>
-    </div>
+      <div class="profile-setting d-flex align-items-center px-3 py-3">
+        <img class="user-img" src="assets/img/img_user.png">
+        <div class="user-details ml-3">
+          <h6 class="mb-1 text-white">
+            <a href="/settings/profile" class="text-white">ProfileSetting</a>
+          </h6>
+
+          <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'signout', data: { confirm: 'Are you sure ?' }) %>
+        </div>
+      </div>
+      <div class="card-body px-3 pt-4">
+        <ul class="nav flex-column">
+          <li class="nav-item my-2">
+            <%= link_to root_path, class: 'nav-link rounded-pill w-100 active' do %>
+              <i class="mr-2 fas fa-home nav-icon"></i> Dashboard
+            <% end %>
+          </li>
+          <!-- <li class="nav-item">
+            <%= link_to admin_news_index_path, class: 'nav-link' do %>
+              <i class="mr-2 fas fa-bullhorn nav-icon"></i> News
+            <% end %>
+          </li> -->
+          <!-- <li class="nav-item">
+            <%= link_to admin_events_path, class: 'nav-link' do %>
+              <i class="mr-2 fas fa-calendar-day nav-icon"></i> Schedule
+            <% end %>
+          </li> -->
+          <li class="nav-item my-1">
+            <%= link_to admin_media_sermons_path, class: 'nav-link rounded-pill w-100' do %>
+              <i class="mr-2 fas fa-file-video nav-icon"></i> Video Library
+            <% end %>
+          </li>
+          <!-- <li class="nav-item">
+            <%= link_to admin_media_images_path, class: 'nav-link' do %>
+              <i class="mr-2 fas fa-images nav-icon"></i> Gallery
+            <% end %>
+          </li> -->
+          <!-- <li class="nav-item">
+            <%= link_to admin_members_path, class: 'nav-link' do %>
+              <i class="mr-2 fas fa-users nav-icon"></i> Members
+            <% end %>
+          </li> -->
+          <!-- <li class="nav-item">
+            <%= link_to admin_website_edit_path, class: 'nav-link' do %>
+              <i class="mr-2 fas fa-window-maximize nav-icon"></i> Website
+            <% end %>
+          </li> -->
+          <li class="nav-item my-1">
+            <%= link_to admin_live_streams_path, class: 'nav-link rounded-pill w-100' do %>
+              <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
+            <% end %>
+          </li>
+          <li class="nav-item my-1"> 
+            <%= link_to settings_profile_path, class: 'nav-link rounded-pill w-100' do %>
+              <i class="mr-2 fas fa-cog nav-icon"></i> Settings 
+            <% end %>
+          </li>
+        </ul>
+      </div>
+  </div>
 </div>

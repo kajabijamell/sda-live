@@ -6,6 +6,7 @@
   height: 100%;
   border-radius: 0;
   width: 15rem;
+  transition: 0.5s;
   & .logo{
     font-size:22px;
   }
@@ -13,9 +14,9 @@
     font-weight:700;
   }
   & .profile-setting{
-    background:#2d4ea8;
+    background:$indigo;
     & .signout{
-      color:#8da3de;
+      color:$light-blue;
       font-weight:500;
     }
   }
@@ -23,15 +24,15 @@
     max-height: none !important;
     padding: 0.5rem;
   & .nav-link{
-     color:#4878fc;
+     color:$blue;
      &:hover{
-      background:#8dabff;
-      color:#fff;
+      background:$sky-blue;
+      color:$white;
       border-radius:50px;
      }
      &.active{
-      background:#8dabff;
-      color:#fff;
+      background:$sky-blue;
+      color:$white;
      } 
     }
   }
@@ -43,10 +44,13 @@
     font-weight:500;
   }
   &.card{
-    background:#ebf1ff;
+    background:$zircon;
   }
   & .card-header{
-    background:#2d4ea8;
+    background:$indigo;
     border-bottom: solid 1px #6788e1;
   }
+}
+#sidenav-outer{
+  transition: 0.5s;
 }

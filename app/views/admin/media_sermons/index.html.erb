@@ -1,29 +1,25 @@
-<div class="container-fluid">  
-  <%= render partial: 'shared/simple_page_header', locals: { 
-    title: 'Media Library',
-    btn_text: 'Upload Video',
-    link: new_admin_media_sermon_path,
-    icon: 'fa-photo-video' } %>
-  <div class="row">
-    <div class="col-12">
-      <% if @admin_media_sermons.length > 0 %>
-        <% @admin_media_sermons.in_groups_of(3).each do |group| %>
-          <div class="row">
-            <% group.each do |admin_media_sermon| %>
-              <% if admin_media_sermon.present? %>
-                <%= render 'sermon', sermon: admin_media_sermon %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="alert alert-info" role="alert">
-          You don't have any sermons yet. Click <span class="alert-link">New Sermon</span> or start a live stream to add your first one. 
-        </div>
+<%= render partial: 'shared/simple_page_header', locals: { 
+  title: 'Media Library',
+  btn_text: 'Upload Video',
+  link: new_admin_media_sermon_path,
+  icon: 'fa-photo-video' } %>
+
+
+
+
+<% if @admin_media_sermons.length > 0 %>
+  <% @admin_media_sermons.in_groups_of(3).each do |group| %>
+    <% group.each do |admin_media_sermon| %>
+      <% if admin_media_sermon.present? %>
+        <%= render 'sermon', sermon: admin_media_sermon %>
       <% end %>
-    </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    You don't have any sermons yet. Click <span class="alert-link">New Sermon</span> or start a live stream to add your first one. 
   </div>
-</div>
+<% end %>
 
 <!-- Disables Hls Player
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
