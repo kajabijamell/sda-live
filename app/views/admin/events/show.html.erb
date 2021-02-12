@@ -1,40 +1,48 @@
-<% if @admin_event.image.present? %>
-  <%= image_tag(@admin_event.image.url, height: 200) %>
-<% end %>
-<p>
-  <strong>Name:</strong>
-  <%= @admin_event.name %>
-</p>
+<%= render partial: 'shared/simple_page_header', locals: {
+  title: 'Live Schedule',
+  btn_text: 'New Event',
+  icon: 'fa-calendar-day',
+  link: new_admin_event_path } %>
+<div class="container-fluid mt-n20">
+  <div class="card ht pl-4 pr-4 pt-4 mb-5">
+    <% if @admin_event.image.present? %>
+      <%= image_tag(@admin_event.image.url, height: 200) %>
+    <% end %>
+    <p>
+      <strong>Name:</strong>
+      <%= @admin_event.name %>
+    </p>
 
-<p>
-  <strong>Start datetime:</strong>
-  <%= @admin_event.start_datetime %>
-</p>
+    <p>
+      <strong>Start datetime:</strong>
+      <%= @admin_event.start_datetime %>
+    </p>
 
-<p>
-  <strong>End datetime:</strong>
-  <%= @admin_event.end_datetime %>
-</p>
+    <p>
+      <strong>End datetime:</strong>
+      <%= @admin_event.end_datetime %>
+    </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @admin_event.location %>
-</p>
+    <p>
+      <strong>Location:</strong>
+      <%= @admin_event.location %>
+    </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @admin_event.address %>
-</p>
+    <p>
+      <strong>Address:</strong>
+      <%= @admin_event.address %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @admin_event.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @admin_event.description %>
+    </p>
 
-<p>
-  <strong>Link:</strong>
-  <%= @admin_event.link %>
-</p>
-
-<%= link_to 'Edit', edit_admin_event_path(@admin_event) %> |
-<%= link_to 'Back', admin_events_path %>
+    <p>
+      <strong>Link:</strong>
+      <%= @admin_event.link %>
+    </p>
+    <%= link_to 'Edit', edit_admin_event_path(@admin_event), class: 'btn btn-primary' %>
+    <%= link_to '< Back', :back, class: 'btn btn-primary' %>
+  </div>
+</div>

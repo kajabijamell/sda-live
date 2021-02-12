@@ -1,32 +1,36 @@
-<div class="row">
-  <div class="col-12">
-    <%= form_for(admin_member, as: :admin_member, url: url, local: true, validation: true) do |form| %>
-      <div class="form-group">
-        <%= form.label :profile_picture %>
-        <% if admin_member.profile_picture.present? %>
-          <%= image_tag(admin_member.profile_picture.url, height: 200) %>
+<div class="card mb-5">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <%= form_for(admin_member, as: :admin_member, url: url, local: true, validation: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :profile_picture %>
+            <% if admin_member.profile_picture.present? %>
+              <%= image_tag(admin_member.profile_picture.url, height: 200) %>
+            <% end %>
+            <%= form.file_field :profile_picture, accept: 'image/*'  %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :fname, 'First Name' %>
+            <%= form.text_field :fname, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :lname, 'Last Name' %>
+            <%= form.text_field :lname, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :email %>
+            <%= form.email_field :email, class: 'form-control' %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit 'Save', class: 'btn btn-primary' %>
+          </div>
         <% end %>
-        <%= form.file_field :profile_picture, accept: 'image/*'  %>
       </div>
-
-      <div class="form-group">
-        <%= form.label :fname, 'First Name' %>
-        <%= form.text_field :fname, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :lname, 'Last Name' %>
-        <%= form.text_field :lname, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :email %>
-        <%= form.email_field :email, class: 'form-control' %>
-      </div>
-
-      <div class="actions">
-        <%= form.submit 'Save', class: 'btn btn-primary' %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_093744) do
+ActiveRecord::Schema.define(version: 2021_02_12_150921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,20 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "admin_event_stream_accounts", force: :cascade do |t|
+    t.bigint "admin_event_id", null: false
+    t.bigint "admin_stream_account_id", null: false
+    t.json "response"
+    t.string "response_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "facebook_live_video_id"
+    t.string "youtube_broadcast_id"
+    t.string "youtube_stream_id"
+    t.index ["admin_event_id"], name: "index_admin_event_stream_accounts_on_admin_event_id"
+    t.index ["admin_stream_account_id"], name: "index_admin_event_stream_accounts_on_admin_stream_account_id"
+  end
+
   create_table "admin_events", force: :cascade do |t|
     t.string "name"
     t.datetime "start_datetime"
@@ -48,7 +62,14 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "location"
     t.text "image_data"
+    t.bigint "admin_live_stream_id"
+    t.boolean "is_live_stream", default: false
+    t.boolean "published", default: false
+    t.integer "status"
+    t.datetime "discarded_at"
+    t.index ["admin_live_stream_id"], name: "index_admin_events_on_admin_live_stream_id"
     t.index ["church_id"], name: "index_admin_events_on_church_id"
+    t.index ["discarded_at"], name: "index_admin_events_on_discarded_at"
   end
 
   create_table "admin_live_stream_stats", force: :cascade do |t|
@@ -145,6 +166,19 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
     t.index ["discarded_at"], name: "index_admin_simulcast_targets_on_discarded_at"
   end
 
+  create_table "admin_stream_accounts", force: :cascade do |t|
+    t.bigint "church_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.text "refresh_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "expires_at"
+    t.text "token"
+    t.index ["church_id"], name: "index_admin_stream_accounts_on_church_id"
+  end
+
   create_table "admin_websites", force: :cascade do |t|
     t.string "primary_color"
     t.string "heading_font"
@@ -170,6 +204,18 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "logo_data"
     t.index ["user_id"], name: "index_churches_on_user_id"
+  end
+
+  create_table "http_requests", force: :cascade do |t|
+    t.text "url"
+    t.json "body"
+    t.integer "type_of_request"
+    t.json "response_body"
+    t.string "response_code"
+    t.integer "entity_id"
+    t.string "entity_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "livestream_stats", force: :cascade do |t|
@@ -214,6 +260,7 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
     t.string "stripe_product_id"
     t.string "stripe_price_id"
     t.integer "rank"
+    t.integer "trial_period_days"
   end
 
   create_table "users", force: :cascade do |t|
@@ -243,12 +290,15 @@ ActiveRecord::Schema.define(version: 2020_12_29_093744) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "admin_event_stream_accounts", "admin_events"
+  add_foreign_key "admin_event_stream_accounts", "admin_stream_accounts"
   add_foreign_key "admin_live_stream_stats", "admin_live_streams"
   add_foreign_key "admin_live_streams", "churches"
   add_foreign_key "admin_media_images", "churches"
   add_foreign_key "admin_media_sermons", "churches"
   add_foreign_key "admin_members", "churches"
   add_foreign_key "admin_simulcast_targets", "admin_live_streams"
+  add_foreign_key "admin_stream_accounts", "churches"
   add_foreign_key "admin_websites", "churches"
   add_foreign_key "churches", "users"
   add_foreign_key "subscription_profiles", "subscriptions"

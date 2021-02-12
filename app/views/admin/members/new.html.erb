@@ -1,5 +1,11 @@
-<h1>New Admin Member</h1>
+<%= render partial: 'shared/header', locals: {
+  title: 'New Member',
+  icon: 'fa-user' } %>
 
-<%= render 'form', admin_member: @admin_member, url: admin_members_path(@admin_member) %>
-
-<%= link_to 'Back', admin_members_path %>
+<div class="container-fluid mt-n20">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', admin_member: @admin_member, url: admin_members_path(@admin_member) %>
+    </div>
+  </div>
+</div>

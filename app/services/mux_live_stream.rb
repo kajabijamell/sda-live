@@ -64,7 +64,7 @@ class MuxLiveStream
     create_live_stream_request.playback_policy = [admin_live_stream.playback_policy]
     create_live_stream_request.reduced_latency = true
     create_live_stream_request.passthrough = admin_live_stream.id.to_s
-    create_live_stream_request.test = true if Rails.env.development?
+    # create_live_stream_request.test = true if Rails.env.development?
     create_live_stream_request
   end
 end

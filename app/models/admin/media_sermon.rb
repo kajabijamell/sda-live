@@ -54,7 +54,7 @@ class Admin::MediaSermon < ApplicationRecord
     delete_hls_video
     puts 'Completed Deleting old HLS if present'
     update(hls_url: nil, hls_thumbnail_url: nil)
-    GenerateHlsJob.perform_now(id)
+    GenerateHlsJob.perform_later(id)
   end
 
   def delete_hls_video

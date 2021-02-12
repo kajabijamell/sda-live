@@ -1,49 +1,69 @@
-<div class="container-fluid">
-  <%= render partial: 'shared/simple_page_header', locals: { 
-    title: 'Live Schedule',
-    btn_text: 'New Event',
-    icon: 'fa-calendar-day',
-    link: new_admin_event_path } %>
-  <div class="row">
-    <div class="col-12">
-      <h3>Events</h3>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Start datetime</th>
-            <th>End datetime</th>
-            <th>Location</th>
-            <th>Address</th>
-            <th>Description</th>
-            <th>Link</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
+<%= render partial: 'shared/simple_page_header', locals: {
+  title: 'Live Schedule',
+  btn_text: 'New Event',
+  icon: 'fa-calendar-day',
+  link: new_admin_event_path } %>
+<div class="container-fluid mt-n20">
+  <div class="card ht pl-4 pr-4 pt-4 mb-5">
+    <div class="row">
+      <div class="col-12">
+        <h3>Events</h3>
+        <div class="mt-3">
+          <div class="tbl-header">
+            <div class="table-responsive">
+              <table class="table table-borderless mb-0">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Start datetime</th>
+                    <th>End datetime</th>
+                    <th>Location</th>
+                    <th>Address</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
 
-        <tbody>
-          <% @admin_events.each do |admin_event| %>
-            <tr>
-              <td>
-                <% if admin_event.image.present? %>
-                  <%= image_tag(admin_event.image.url, height: 100) %>
-                <% end %>
-              </td>
-              <td><%= admin_event.name %></td>
-              <td><%= admin_event.start_datetime %></td>
-              <td><%= admin_event.end_datetime %></td>
-              <td><%= admin_event.location %></td>
-              <td><%= admin_event.address %></td>
-              <td><%= admin_event.description %></td>
-              <td><%= admin_event.link %></td>
-              <td><%= link_to 'Show', admin_event %></td>
-              <td><%= link_to 'Edit', edit_admin_event_path(admin_event) %></td>
-              <td><%= link_to 'Destroy', admin_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                <tbody>
+                  <% @admin_events.each do |admin_event| %>
+                    <tr>
+                      <td>
+                        <% if admin_event.image.present? %>
+                          <%= image_tag(admin_event.image.url, height: 100) %>
+                        <% end %>
+                      </td>
+                      <td><%= link_to(admin_event.name, admin_event) %></td>
+                      <td><%= admin_event.start_datetime %></td>
+                      <td><%= admin_event.end_datetime %></td>
+                      <td><%= admin_event.location %></td>
+                      <td><%= admin_event.address %></td>
+                      <td><%= admin_event.description %></td>
+                      <td><%= admin_event.link %></td>
+                      <td>
+                        <%= link_to admin_event do %>
+                          <i class="fas fa-eye indigo-text"></i>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= link_to edit_admin_event_path(admin_event) do %>
+                          <i class="fas fa-edit indigo-text"></i>
+                        <% end %>
+                      </td>
+                      <td>
+                        <%= link_to admin_event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <i class="fas fa-trash-alt indigo-text"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
