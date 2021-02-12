@@ -19,6 +19,8 @@ class SettingsController < ApplicationController
     else
       []
     end
+    @facebook_stream_accounts = current_user.church.stream_accounts.where(provider: 'facebook').count
+    @youtube_stream_accounts = current_user.church.stream_accounts.where(provider: 'google_oauth2').count
   end
 
   def save_profile
@@ -55,5 +57,4 @@ class SettingsController < ApplicationController
   def load_subscription_profile
     @subscription_profile = current_user.subscription_profile
   end
-  
 end
