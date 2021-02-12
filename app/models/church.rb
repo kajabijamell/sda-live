@@ -32,6 +32,7 @@ class Church < ApplicationRecord
   has_one :website, class_name: 'Admin::Website', dependent: :destroy
   has_many :members, class_name: 'Admin::Member', dependent: :destroy
   has_many :live_streams, class_name: 'Admin::LiveStream', dependent: :destroy
+  has_many :stream_accounts, class_name: 'Admin::StreamAccount', dependent: :destroy
 
   # has_one_attached :logo
   include ImageUploader::Attachment(:logo)

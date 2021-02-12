@@ -53,6 +53,9 @@ end
 # authentication and authorisation
 gem 'devise'
 gem 'pundit'
+gem 'omniauth', '~> 1.9.1'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 group :development do
   # Dev email testing

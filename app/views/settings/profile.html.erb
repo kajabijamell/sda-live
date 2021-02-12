@@ -30,6 +30,35 @@
             </div>
           </div>
         </div>
+        <% if current_user.admin? %>
+          <h3>Connected Accounts</h3>
+          <div class="row">
+            <% current_user.church.stream_accounts.each do |stream| %>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= stream.name %></h5>
+                    <p class="card-text"><%= stream.provider_text %></p>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <br/>
+          <div class="form-group">
+            <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary' do %>
+              <i class="fab fa-facebook-square"></i>&nbsp;&nbsp; Connect Facebook
+            <% end %>
+            <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary'  do %>
+              <i class="fab fa-youtube"></i>&nbsp;&nbsp; Connect Youtube
+            <% end %>
+          </div>
+        <% end %>
+        <%= f.submit 'Save', class: 'btn btn-primary mt-2 px-5' %>
+        <%= link_to('Delete My Account', settings_profile_path, method: :delete,
+                    class: 'btn btn-outline-red float-right mt-2',
+                    data: { confirm: 'Are you sure you want to delete. This action can\'t be reverted.' }) if current_user.admin? %>
       </div>
     </div>
   </div>

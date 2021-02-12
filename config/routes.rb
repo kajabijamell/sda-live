@@ -71,7 +71,8 @@ Rails.application.routes.draw do
 
 
   devise_for :users, controllers: {
-    registrations: 'user/registrations'
+    registrations: 'user/registrations',
+    omniauth_callbacks: 'admin/omniauth'
   }
 
   devise_scope :user do

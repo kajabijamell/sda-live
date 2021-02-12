@@ -10,6 +10,7 @@
 #  rank              :integer
 #  stream_size       :integer
 #  targets           :integer
+#  trial_period_days :integer
 #  video_storage     :integer
 #  viewer_count      :integer
 #  created_at        :datetime         not null

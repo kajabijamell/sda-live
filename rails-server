@@ -1,0 +1,1 @@
+rails s -b 'ssl://lvh.me:3000?key=server.key&cert=server.crt'

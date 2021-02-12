@@ -7,7 +7,7 @@ class Admin::EventsController < ApplicationController
 
   # GET /admin/events
   def index
-    @admin_events = current_user.church.events
+    @admin_events = current_user.church.events.kept
   end
 
   # GET /admin/events/1
@@ -16,6 +16,7 @@ class Admin::EventsController < ApplicationController
   # GET /admin/events/new
   def new
     @admin_event = current_user.church.events.new
+    @stream_accounts = current_user.church.stream_accounts
   end
 
   # GET /admin/events/1/edit
@@ -23,9 +24,13 @@ class Admin::EventsController < ApplicationController
 
   # POST /admin/events
   def create
-    @admin_event = current_user.church.events.new(admin_event_params)
+    @admin_event = current_user.church.events.new(create_admin_event_params)
 
     if @admin_event.save
+      if @admin_event.is_live_stream
+        stream_account_ids = params[:admin_event][:event_stream_account_ids]
+        AdminEventLiveStreamJob.perform_later(@admin_event.id, stream_account_ids) if stream_account_ids.present?
+      end
       redirect_to @admin_event, notice: 'Event was successfully created.'
     else
       render :new
@@ -34,7 +39,8 @@ class Admin::EventsController < ApplicationController
 
   # PATCH/PUT /admin/events/1
   def update
-    if @admin_event.update(admin_event_params)
+    if @admin_event.update(update_admin_event_params)
+      AdminEventLiveStreamUpdateJob.perform_later(@admin_event.id)
       redirect_to @admin_event, notice: 'Event was successfully updated.'
     else
       render :edit
@@ -43,7 +49,8 @@ class Admin::EventsController < ApplicationController
 
   # DELETE /admin/events/1
   def destroy
-    @admin_event.destroy
+    AdminEventLiveStreamDiscardJob.perform_later(@admin_event.id) if @admin_event.is_live_stream
+    @admin_event.discard
     redirect_to admin_events_url, notice: 'Event was successfully destroyed.'
   end
 
@@ -51,12 +58,18 @@ class Admin::EventsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_event
-    @admin_event = current_user.church.events.find(params[:id])
+    @admin_event = current_user.church.events.kept.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
-  def admin_event_params
-    params.require(:admin_event).permit(:name, :start_datetime, :end_datetime, :location, :address, :description, :link, :image)
+  def create_admin_event_params
+    params.require(:admin_event).permit(:name, :start_datetime, :end_datetime, :location, :address,
+                                        :description, :link, :image, :is_live_stream, :published)
+  end
+
+  def update_admin_event_params
+    params.require(:admin_event).permit(:name, :start_datetime, :end_datetime, :location, :address,
+                                        :description, :link, :image, :published)
   end
 
   def set_time_zone

@@ -1,6 +1,11 @@
-<h1>Editing Admin Member</h1>
+<%= render partial: 'shared/header', locals: {
+  title: 'Edit Member',
+  icon: 'fa-user' } %>
 
-<%= render 'form', admin_member: @admin_member, url: admin_member_path(@admin_member) %>
-
-<%= link_to 'Show', admin_member_path(@admin_member) %> |
-<%= link_to 'Back', admin_members_path %>
+<div class="container-fluid mt-n20">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', admin_member: @admin_member, url: admin_member_path(@admin_member) %>
+    </div>
+  </div>
+</div>

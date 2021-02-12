@@ -15,7 +15,7 @@ class Admin::SubscriptionsController < ApplicationController
         response = Stripe::CreateSubscription.call(
           stripe_customer_id: @subscription_profile.stripe_customer_id,
           stripe_card_id: @subscription_profile.stripe_card_id,
-          stripe_price_id: subscription.stripe_price_id
+          subscription: subscription
         )
         if response.error
           flash[:error] = response.message || 'Subscription selection failed.'
