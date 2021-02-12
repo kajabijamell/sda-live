@@ -5,7 +5,10 @@ class SettingsController < ApplicationController
 
   layout 'admin'
 
-  def profile; end
+  def profile
+    @facebook_stream_accounts = current_user.church.stream_accounts.where(provider: 'facebook').count
+    @youtube_stream_accounts = current_user.church.stream_accounts.where(provider: 'google_oauth2').count
+  end
 
   def save_profile
     user = current_user
