@@ -22,10 +22,12 @@
 .table td {
   vertical-align: middle;
 }
-.custom-file-input-button::-webkit-file-upload-button, .uppy-FileInput-input::-webkit-file-upload-button {
+.custom-file-input-button::-webkit-file-upload-button,
+.uppy-FileInput-input::-webkit-file-upload-button {
   display: none;
 }
-.custom-file-input-button::before, .uppy-FileInput-input::before {
+.custom-file-input-button::before,
+.uppy-FileInput-input::before {
   content: 'Choose File';
   border: 1px solid transparent;
   padding: 0.25rem 0.5rem;
@@ -56,6 +58,9 @@ button:focus {
 .close {
   right: 15px;
   top: 15px;
+  img {
+    width: 12px;
+  }
 }
 .btn-primary {
   background: $blue;

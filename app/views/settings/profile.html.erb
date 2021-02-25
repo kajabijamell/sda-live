@@ -1,57 +1,9 @@
-<%= render partial: "shared/header", locals: { 
-  title: "Edit Profile",
-  icon: "fa-user-cog"  } 
-%>
+<%= render partial: "shared/header", locals: {title: "Edit Profile", icon: "fa-user-cog"}%>
 
 <div class="container mt-n20">
   <% if current_user.admin? %>
     <%# render partial: '/settings/church_form', locals: { church: current_user.church }  %>
     <%# render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
   <% end %>
-  <div class="card p-4 mb-5">
-    <%= link_to(:back, class: 'close position-absolute') do %>
-      <%= image_tag('img/icon_close.png') %>
-    <% end %>
-    <%= form_for current_user, url: settings_profile_path do |f| %>
-      <div>
-        <div class="form-group mb-4">
-          <%= f.label :profile_picture, class: 'text-black font-weight-500' %>
-
-          <div class="profile-pic-upload position-relative mt-3">
-          <% if current_user.profile_picture(:thumb).present? %>
-            <%= image_tag(current_user.profile_picture(:thumb).url, width: '100px', class: 'avatar-img img-fluid rounded-circle') %>
-
-          <% elsif current_user.profile_picture.present? %>
-            <%= image_tag(current_user.profile_picture.url, width: '100px', class: 'avatar-img img-fluid rounded-circle') %>
-          <% else %>
-            <%= image_tag('img/img_profile.png', class: 'avatar-img img-fluid rounded-circle') %>
-          <% end %>
-          
-          </div>
-          <div class="position-relative mt-3">
-            <%= f.file_field :profile_picture, accept: 'image/*' %>
-            <div class="btn btn-primary">Choose File</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= f.label :fname, 'First Name', class: 'text-black font-weight-500' %>
-          <%= f.text_field :fname, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :lname, 'Last Name', class: 'text-black font-weight-500' %>
-          <%= f.text_field :lname, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :email, class: 'text-black font-weight-500' %>
-          <%= f.email_field :email, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :time_zone, class: 'text-black font-weight-500' %>
-          <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, {}, class: 'form-control' %>
-        </div>
-        <%= f.submit 'Save', class: 'btn btn-primary mt-2 px-5' %>
-        <%= link_to('Delete My Account', settings_profile_path, method: :delete, class: 'btn btn-outline-red float-right mt-2', data: { confirm: 'Are you sure you want to delete. This action can\'t be reverted.' }) %>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'profile_form' %>
 </div>
