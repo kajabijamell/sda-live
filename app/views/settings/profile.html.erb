@@ -3,7 +3,7 @@
   icon: "fa-user-cog"  } 
 %>
 
-<div class="container-fluid mt-n20">
+<div class="container mt-n20">
   <% if current_user.admin? %>
     <%# render partial: '/settings/church_form', locals: { church: current_user.church }  %>
     <%# render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
