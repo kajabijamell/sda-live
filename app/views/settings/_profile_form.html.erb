@@ -6,8 +6,7 @@
     <% end %>
     <%= form_for current_user, url: settings_profile_path do |f| %>
       <div class="form-group mb-4">
-        <%= f.label :profile_picture, class: 'text-black font-weight-500' %>
-        <div class="profile-pic-upload position-relative mt-3">
+        <div class="profile-pic-upload position-relative">
           <% if current_user.profile_picture(:thumb).present? %>
             <%= image_tag(current_user.profile_picture(:thumb).url, style: "width:6rem;", class: 'avatar-img img-fluid rounded-circle') %>
           <% elsif current_user.profile_picture.present? %>
