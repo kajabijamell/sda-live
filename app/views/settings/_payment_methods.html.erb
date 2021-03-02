@@ -1,6 +1,6 @@
 <div class="card card-header-actions mb-4">
   <div class="card-header"> Payment Methods
-    <%= link_to 'Add New Card', new_admin_payment_method_path, class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Add New Card', new_admin_payment_method_path, class: "btn btn-sm btn-primary #{"disabled" if !@subscription_profile&.active }" %>
   </div>
   <div class="card-body">
     <% if @cards.length > 0 %>
