@@ -1,0 +1,16 @@
+<div class="mb-3">
+  <% if @subscription_profile&.active %>
+    <h3><%= @subscription_profile.subscription.name %></h3>
+    <% if @subscription.cancel_at_period_end %>
+      <div>Cancel at: <%= local_time(DateTime.strptime(@subscription.cancel_at.to_s,'%s')) %></div>
+      <%= link_to 'Restart Subscription', admin_restart_subscription_path, class: 'btn btn-danger', method: :post %>
+      <%= link_to 'Change Subscription', admin_subscriptions_path, class: 'btn btn-primary' %>
+    <% else %>
+      <div>Next Billing Date: <%= local_time(DateTime.strptime(@subscription.current_period_end.to_s,'%s')) %></div>
+      <%= link_to 'Cancel Subscription', admin_cancel_subscription_path, class: 'btn btn-danger', method: :delete %>
+      <%= link_to 'Change Subscription', admin_subscriptions_path, class: 'btn btn-primary' %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Select Subscription', admin_subscriptions_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>

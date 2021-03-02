@@ -1,0 +1,27 @@
+<div class="mb-3">
+    <h2>Payment Settings</h2>
+    <%= link_to 'Add New Card', new_admin_payment_method_path, class: 'btn btn-primary' %>
+  <br/>
+  <br/>
+  <div class="row">
+    <% if @cards.length > 0 %>
+      <% @cards.each do |card| %>
+        <div class="col-md-4 save-cards">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= card.brand %> ending with <%= card.last4 %></h5>
+              <p class="card-text">Expiring on <%= card.exp_month %>/<%= card.exp_year %></p>
+              <% if @subscription_profile.stripe_card_id == card.id %>
+              <% else %>
+                <%= link_to('Set as default', admin_set_default_payment_method_path(id: card.id), method: :post, class: 'btn btn-primary') %>
+              <% end %>
+              <%= link_to('Delete Card', admin_payment_method_path(id: card.id), method: :delete, data: { confirm: 'Are you sure ?' }, class: 'btn btn-danger') %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>No cards</p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-4 mb-4">
+    <div class="card h-100 lift border-left-lg border-left-primary">
+      <div class="card-body">
+        <div class="small text-muted">Current monthly bill</div>
+        <div class="h2">$<%= @subscription_profile.subscription.price.to_i %></div>
+        <%= link_to admin_cancel_subscription_path, class: 'text-arrow-icon  stretched-link small text-primary', method: :delete do %>
+          Cancel Subscription
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 mb-4">
+    <div class="card h-100 lift border-left-lg border-left-secondary">
+      <div class="card-body">
+        <div class="small text-muted">Next payment due</div>
+        <div class="h3"><%= local_time(DateTime.strptime(@subscription.current_period_end.to_s,'%s'), "%B %d") %></div>
+        
+        <a class="text-arrow-icon  stretched-link small text-secondary" href="#!">
+          View payment history
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 mb-4">
+    <div class="card h-100 lift border-left-lg border-left-teal">
+      <div class="card-body">
+        <div class="small text-muted">Current subscription</div>
+        <div class="h3 d-flex align-items-center"><%= @subscription_profile.subscription.name %></div>
+        <%= link_to admin_subscriptions_path, class: 'text-arrow-icon  stretched-link small text-teal' do %>
+          Change Subscription
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

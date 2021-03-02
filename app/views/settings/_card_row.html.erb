@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center">
+      <i class="mr-2 fa-w-18 fa-2x fab fa-cc-<%= card.brand.downcase %> cc-color-visa"></i>
+      <div class="small mr-2"><%= card.brand %> ending with <%= card.last4 %></div>
+      <div class="text-xs text-muted">Expiring on <%= card.exp_month %>/<%= card.exp_year %></div>
+    </div>
+  </div>
+  <div class="ml-4 small">
+    <% if @subscription_profile.stripe_card_id == card.id %>
+      <div class="badge badge-light mr-3">Default</div>
+    <% else %>
+      <%= link_to('Make default', admin_set_default_payment_method_path(id: card.id), method: :post, class: "text-muted mr-3 small") %>
+    <% end %>
+    <%= link_to('Delete Card', admin_payment_method_path(id: card.id), method: :delete, data: { confirm: 'Are you sure ?' }, class: 'small') %>
+  </div>
+</div>
+<hr>

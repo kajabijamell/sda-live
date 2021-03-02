@@ -1,0 +1,14 @@
+<div class="card card-header-actions mb-4">
+  <div class="card-header"> Payment Methods
+    <%= link_to 'Add New Card', new_admin_payment_method_path, class: 'btn btn-sm btn-primary' %>
+  </div>
+  <div class="card-body">
+    <% if @cards.length > 0 %>
+      <% @cards.each do |card| %>
+        <%= render 'card_row', card: card %>
+      <% end %>
+    <% else %>
+      <p>No cards</p>
+    <% end %>
+  </div>
+</div>
