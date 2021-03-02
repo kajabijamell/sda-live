@@ -5,5 +5,32 @@
     <%# render partial: '/settings/church_form', locals: { church: current_user.church }  %>
     <%# render partial: '/settings/subdomain_form', locals: { subdomain: current_user.subdomain } %>
   <% end %>
-  <%= render 'profile_form' %>
+  <div class="row">
+    <div class="col-12 mb-3">
+      <div class="card">
+        <div class="card-header">
+          <nav class="nav nav-borders">
+            <a class="nav-link ml-0 active" href="#profile" data-toggle="tab" role="tab">Profile</a>
+            <a class="nav-link" href="#billing" data-toggle="tab" role="tab">Billing</a>
+            <a class="nav-link" href="#notifications" data-toggle="tab" role="tab">Notifications</a>
+          </nav>
+        </div>
+        <div class="card-body bg-white">
+          <div class="tab-content" id="cardTabContent">
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <%= render 'profile_form' %>
+            </div>
+            <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
+              <%= render 'billing_cards' %>
+              <%= render 'payment_methods' %>
+              <%= render 'payment_history' %>
+            </div>
+            <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                <h5 class="card-title">Notifications Tab</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

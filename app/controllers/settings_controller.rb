@@ -2,10 +2,24 @@
 
 class SettingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_subscription_profile
 
   layout 'admin'
 
-  def profile; end
+  def profile
+    @cards = if @subscription_profile.present? && @subscription_profile.stripe_customer_id.present?
+      response = Stripe::GetCards.call(stripe_customer_id: @subscription_profile.stripe_customer_id)
+      response.cards.data
+    else
+      []
+    end
+    @subscription = if @subscription_profile.present? && @subscription_profile.stripe_subscription_id.present?
+      response = Stripe::GetSubscription.call(stripe_subscription_id: @subscription_profile.stripe_subscription_id)
+      response.subscription
+    else
+      []
+    end
+  end
 
   def save_profile
     user = current_user
@@ -37,4 +51,9 @@ class SettingsController < ApplicationController
   def user_params
     params.require(:user).permit(:profile_picture, :fname, :lname, :email, :time_zone)
   end
+
+  def load_subscription_profile
+    @subscription_profile = current_user.subscription_profile
+  end
+  
 end

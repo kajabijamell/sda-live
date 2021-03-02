@@ -7,7 +7,7 @@
         <%= image_tag(current_user.profile_picture.present? ? current_user.profile_picture.url : 'img/img_profile.png', class: 'user-img rounded-circle', height: '60px') %>
         <div class="user-details ml-3">
           <h6 class="mb-1 text-white">
-            <%= link_to('Profile Setting', settings_profile_path, class: 'text-white') %>
+            <%= link_to('Profile Settings', settings_profile_path, class: 'text-white') %>
           </h6>
 
           <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'signout', data: { confirm: 'Are you sure ?' }) %>
@@ -55,11 +55,11 @@
               <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
             <% end %>
           </li>
-          <li class="nav-item my-1"> 
+          <!-- <li class="nav-item my-1"> 
             <%= link_to admin_payment_methods_path, class: 'nav-link rounded-pill w-100' do %>
               <i class="mr-2 fas fa-dollar-sign nav-icon"></i> Billing Settings
             <% end %>
-          </li>
+          </li> -->
         </ul>
       </div>
   </div>
