@@ -1,7 +1,7 @@
 <div id="sidenav-outer" class="collapse d-md-block">
   <div id="sidenav" class="card card-scrollable rounded-0 border-0">
       <div class="card-header d-flex rounded-0  justify-content-center align-items-center">
-        <a href="/" class="h3 text-center text-white text-decoration-none m-0 logo">SDA Live</a><span class="badge badge-pill badge-info ml-1">beta</span>
+        <a href="/" class="h3 text-center text-white text-decoration-none m-0 logo">ChurchFlow</a><span class="badge badge-pill badge-info ml-1">beta</span>
       </div>
       <div class="profile-setting d-flex align-items-center px-3 py-3">
         <%= image_tag(current_user.profile_picture.present? ? current_user.profile_picture.url : 'img/img_profile.png', class: 'user-img rounded-circle', height: '60px') %>
@@ -13,7 +13,7 @@
           <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'signout', data: { confirm: 'Are you sure ?' }) %>
         </div>
       </div>
-      <div class="card-body px-3 pt-4">
+      <div class="card-body px-3 px-4 py-3">
         <ul class="nav flex-column">
           <li class="nav-item my-2">
             <%= link_to root_path, class: 'nav-link rounded-pill w-100 ' do %>
