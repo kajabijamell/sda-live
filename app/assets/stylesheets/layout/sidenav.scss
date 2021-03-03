@@ -7,50 +7,31 @@
   border-radius: 0;
   width: 15rem;
   transition: 0.5s;
-  & .logo{
-    font-size:22px;
-  }
-  & .badge{
-    font-weight:700;
-  }
-  & .profile-setting{
-    background:$indigo;
-    & .signout{
-      color:$light-blue;
-      font-weight:500;
-    }
+  & .logo {
+    font-size: 22px;
   }
   & .card-body {
     max-height: none !important;
-    padding: 0.5rem;
-  & .nav-link{
-     color:$blue;
-     &:hover{
-      background:$sky-blue;
-      color:$white;
-      border-radius:50px;
-     }
-     &.active{
-      background:$sky-blue;
-      color:$white;
-     } 
+    & .nav-link {
+      transition: all 300ms;
+      &:hover {
+        background: $blue;
+        color: $white;
+        border-radius: 50px;
+      }
+      &.active {
+        background: $blue;
+        color: $white;
+      }
     }
   }
 
   & .nav-link {
     display: inline-block;
-    padding: 0.68rem 1.5rem;
-    color: $headings-color;
-    font-weight:500;
-  }
-  &.card{
-    background:$zircon;
-  }
-  & .card-header{
-    background:$indigo;
-    border-bottom: solid 1px #6788e1;
+    padding: 0.5rem 1.5rem;
+    color: $gray-700;
   }
 }
-#sidenav-outer{
+#sidenav-outer {
   transition: 0.5s;
 }

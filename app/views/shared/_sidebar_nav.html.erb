@@ -1,21 +1,11 @@
 <div id="sidenav-outer" class="collapse d-md-block">
   <div id="sidenav" class="card card-scrollable rounded-0 border-0">
-      <div class="card-header d-flex rounded-0  justify-content-center align-items-center">
-        <a href="/" class="h3 text-center text-white text-decoration-none m-0 logo">ChurchFlow</a><span class="badge badge-pill badge-info ml-1">beta</span>
+      <div class="card-header d-flex rounded-0 py-4 justify-content-center align-items-center">
+        <a href="/" class="h3 text-center text-decoration-none m-0 logo text-dark">ChurchFlow</a><span class="badge badge-pill badge-primary ml-2">beta</span>
       </div>
-      <div class="profile-setting d-flex align-items-center px-3 py-3">
-        <%= image_tag(current_user.profile_picture.present? ? current_user.profile_picture.url : 'img/img_profile.png', class: 'user-img rounded-circle', height: '60px') %>
-        <div class="user-details ml-3">
-          <h6 class="mb-1 text-white">
-            <%= link_to('Profile Settings', settings_profile_path, class: 'text-white') %>
-          </h6>
-
-          <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'signout', data: { confirm: 'Are you sure ?' }) %>
-        </div>
-      </div>
-      <div class="card-body px-3 px-4 py-3">
+      <div class="card-body px-3 py-3">
         <ul class="nav flex-column">
-          <li class="nav-item my-2">
+          <li class="nav-item my-1">
             <%= link_to root_path, class: 'nav-link rounded-pill w-100 ' do %>
               <i class="mr-2 fas fa-home nav-icon"></i> Dashboard
             <% end %>
@@ -32,7 +22,7 @@
           </li> -->
           <li class="nav-item my-1">
             <%= link_to admin_media_sermons_path, class: 'nav-link rounded-pill w-100' do %>
-              <i class="mr-2 fas fa-file-video nav-icon"></i> Video Library
+              <i class="mr-2 fas fa-photo-video nav-icon"></i> Media Library
             <% end %>
           </li>
           <!-- <li class="nav-item">
@@ -52,7 +42,7 @@
           </li> -->
           <li class="nav-item my-1">
             <%= link_to admin_live_streams_path, class: 'nav-link rounded-pill w-100' do %>
-              <i class="mr-2 fas fa-video nav-icon"></i> Live Stream
+              <i class="mr-2 fas fa-broadcast-tower nav-icon"></i> Live Stream
             <% end %>
           </li>
           <!-- <li class="nav-item my-1"> 
@@ -61,6 +51,16 @@
             <% end %>
           </li> -->
         </ul>
+      </div>
+      <div class="card-footer bg-white profile-setting d-flex align-items-center p-3">
+        <%= image_tag(current_user.profile_picture.present? ? current_user.profile_picture.url : 'img/img_profile.png', class: 'user-img rounded-circle', height: '48px') %>
+        <div class="user-details ml-3">
+          <h6 class="mb-0">
+            <%= link_to('Profile Settings', settings_profile_path, class: 'text-gray-700') %>
+          </h6>
+
+          <%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: 'small text-gray-500', data: { confirm: 'Are you sure ?' }) %>
+        </div>
       </div>
   </div>
 </div>

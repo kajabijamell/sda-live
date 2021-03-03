@@ -6,7 +6,7 @@ $yellow: #f4a100;
 $green: #00573f;
 $teal: #00ba94;
 $cyan: #57e5be;
-$blue: #4878fc;
+$blue: #0072ef;
 $sky-blue: #8dabff;
 $indigo: #2d4ea8;
 $light-blue: #8da3de;
@@ -17,7 +17,7 @@ $white: #ffffff;
 $zircon: #ebf1ff;
 $link-water: #eef2fb;
 $grey: #f9f9f9;
-$dark-border: #707070; 
+$dark-border: #707070;
 
 // Theme variable to set base hue for the custom grayscale
 //
@@ -74,34 +74,34 @@ $danger-soft: mix($gray-100, $danger, 80%);
 // Extend the color map to include non-contextual colors and soft variations
 
 $theme-colors: (
-    "black": $black,
-    "white": $white,
-    "red": $red,
-    "orange": $orange,
-    "yellow": $yellow,
-    "green": $green,
-    "teal": $teal,
-    "cyan": $cyan,
-    "blue": $blue,
-    "indigo": $indigo,
-    "purple": $purple,
-    "pink": $pink,
-    "red-soft": $red-soft,
-    "orange-soft": $orange-soft,
-    "yellow-soft": $yellow-soft,
-    "green-soft": $green-soft,
-    "teal-soft": $teal-soft,
-    "cyan-soft": $cyan-soft,
-    "blue-soft": $blue-soft,
-    "indigo-soft": $indigo-soft,
-    "purple-soft": $purple-soft,
-    "pink-soft": $pink-soft,
-    "primary-soft": $primary-soft,
-    "secondary-soft": $secondary-soft,
-    "success-soft": $success-soft,
-    "info-soft": $info-soft,
-    "warning-soft": $warning-soft,
-    "danger-soft": $danger-soft,
+  'black': $black,
+  'white': $white,
+  'red': $red,
+  'orange': $orange,
+  'yellow': $yellow,
+  'green': $green,
+  'teal': $teal,
+  'cyan': $cyan,
+  'blue': $blue,
+  'indigo': $indigo,
+  'purple': $purple,
+  'pink': $pink,
+  'red-soft': $red-soft,
+  'orange-soft': $orange-soft,
+  'yellow-soft': $yellow-soft,
+  'green-soft': $green-soft,
+  'teal-soft': $teal-soft,
+  'cyan-soft': $cyan-soft,
+  'blue-soft': $blue-soft,
+  'indigo-soft': $indigo-soft,
+  'purple-soft': $purple-soft,
+  'pink-soft': $pink-soft,
+  'primary-soft': $primary-soft,
+  'secondary-soft': $secondary-soft,
+  'success-soft': $success-soft,
+  'info-soft': $info-soft,
+  'warning-soft': $warning-soft,
+  'danger-soft': $danger-soft
 );
 
 // Override Bootstrap yiq lightness value
@@ -117,6 +117,3 @@ $facebook: #3b5998;
 $twitter: #1da1f2;
 $github: #333333;
 $google: #ea4335;
-
-
-
