@@ -1,7 +1,7 @@
 <div class="row">
   <% if @subscription_profile&.active && !@subscription.cancel_at_period_end %>
     <div class="col-lg-4 mb-4">
-      <div class="card h-100 lift border-left-lg border-left-primary">
+      <div class="card h-100 border-left-lg border-left-primary">
         <div class="card-body">
           <div class="small text-muted">Current monthly bill</div>
           <div class="h2">$<%= @subscription_profile.subscription.price.to_i %></div>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="col-lg-4 mb-4">
-      <div class="card h-100 lift border-left-lg border-left-secondary">
+      <div class="card h-100 border-left-lg border-left-secondary">
         <div class="card-body">
           <div class="small text-muted">Next payment due</div>
           <div class="h3"><%= local_time(DateTime.strptime(@subscription.current_period_end.to_s,'%s'), "%B %d") %></div>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="col-lg-4 mb-4">
-      <div class="card h-100 lift border-left-lg border-left-teal">
+      <div class="card h-100 border-left-lg border-left-teal">
         <div class="card-body">
           <div class="small text-muted">Current subscription</div>
           <div class="h3 d-flex align-items-center"><%= @subscription_profile.subscription.name %></div>

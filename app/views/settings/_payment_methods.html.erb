@@ -4,11 +4,16 @@
   </div>
   <div class="card-body">
     <% if @cards.length > 0 %>
-      <% @cards.each do |card| %>
-        <%= render 'card_row', card: card %>
+      <% @cards.each do |card, index| %>
+         <% if index == @cards.size - 1 %>
+          <%= render 'card_row', card: card, last: true %>
+        <% else %>  
+          <%= render 'card_row', card: card %>
+        <% end %>
       <% end %>
     <% else %>
       <p>No cards</p>
     <% end %>
   </div>
 </div>
+ 

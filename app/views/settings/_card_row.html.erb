@@ -1,7 +1,9 @@
+<% last = false if local_assigns[:last].nil? %>
+
 <div class="d-flex align-items-center justify-content-between">
   <div class="d-flex align-items-center">
     <div class="d-flex align-items-center">
-      <i class="mr-2 fa-w-18 fa-2x fab fa-cc-<%= card.brand.downcase %> cc-color-visa"></i>
+      <i class="mr-3 fa-w-18 fa-2x fab fa-cc-<%= card.brand.downcase %> cc-color-visa"></i>
       <div class="small mr-2"><%= card.brand %> ending with <%= card.last4 %></div>
       <div class="text-xs text-muted">Expiring on <%= card.exp_month %>/<%= card.exp_year %></div>
     </div>
@@ -15,4 +17,6 @@
     <%= link_to('Delete Card', admin_payment_method_path(id: card.id), method: :delete, data: { confirm: 'Are you sure ?' }, class: 'small') %>
   </div>
 </div>
-<hr>
+<% unless last %>
+  <hr>
+<% end %>
