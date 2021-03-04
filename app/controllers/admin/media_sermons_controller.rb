@@ -7,7 +7,7 @@ class Admin::MediaSermonsController < ApplicationController
   # GET /admin/media_sermons
   # GET /admin/media_sermons.json
   def index
-    params[:view] ||= 'grid'
+    params[:view] ||= 'table'
     @admin_media_sermons = current_user.church.media_sermons.order("#{sort_column} #{sort_direction}")
   end
 
