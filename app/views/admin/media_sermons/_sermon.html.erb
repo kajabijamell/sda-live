@@ -1,66 +1,70 @@
 <% if view == 'grid' %>
   <div class=" item col-md-6 col-lg-4 mb-4">
     <div class="card card-header-actions shadow-none">
-      <div class="card-header indigo-text">
-        <%= link_to sermon.title&.truncate(30), edit_admin_media_sermon_path(sermon), class: "text-decoration-none",
-                    title: sermon.title %>
+      <div class="card-header">
+        <%= link_to sermon.title&.truncate(30), edit_admin_media_sermon_path(sermon), class: "text-decoration-none text-gray-700", title: sermon.title %>
         <div class="dropdown no-caret">
-          <button class="actions-dd border-0 dropdown-toggle py-1 px-2 rounded" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn-sm border-0 dropdown-toggle py-1 px-2 rounded" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Actions <i class="fa fa-caret-down ml-2" aria-hidden="true"></i>
           </button>
-          <div class="dropdown-menu dropdown-menu-right animated--fade-in-up bg-zircon">
+          <div class="dropdown-menu dropdown-menu-right animated--fade-in-up">
             <%= link_to edit_admin_media_sermon_path(sermon), class: 'dropdown-item' do %>
-              <div class="indigo-text w-100">Edit</div>
+              <div class="w-100">Edit</div>
               <div class="dropdown-item-icon">
-                <i class="fa fa-edit indigo-text"></i>
+                <i class="fa fa-edit"></i>
               </div>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if sermon.video.present? %>
               <button class="dropdown-item clipboard-copy-btn" data-clipboard-text="<%= sermon.get_video_url %>">
-                <div class="indigo-text w-100">Copy Url</div>
+                <div class="w-100">Copy Url</div>
                 <div class="dropdown-item-icon">
-                  <i class="fa fa-clone indigo-text"></i>
+                  <i class="fa fa-clone"></i>
                 </div>
               </button>
               <div class="dropdown-divider"></div>
               <%= link_to sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'dropdown-item', target: '_blank' do %>
-
-                <div class="indigo-text w-100">Download</div>
+                <div class="w-100">Download</div>
                 <div class="dropdown-item-icon">
-                  <i class="fa fa-download indigo-text"></i>
+                  <i class="fa fa-download"></i>
                 </div>
               <% end %>
+              <div class="dropdown-divider"></div>
             <% end %>
-            <div class="dropdown-divider"></div>
             <%= link_to sermon, method: :delete, class: 'dropdown-item', data: { confirm: 'Are you sure ?' }  do %>
-              <div class="indigo-text w-100">Delete</div>
+              <div class="w-100">Delete</div>
               <div class="dropdown-item-icon">
-                <i class="fa fa-trash-alt indigo-text"></i>
+                <i class="fa fa-trash-alt"></i>
               </div>
             <% end %>
           </div>
         </div>
       </div>
-      <% if sermon.get_video_url.present? %>
-        <div id="video-player-<%= sermon.id %>"></div>
-        <script>
-          playerInstance = jwplayer('video-player-<%= sermon.id %>');
-          playerInstance.setup({
-            file: '<%= raw(sermon.get_video_url) %>',
-            image: '<%= raw(sermon.get_thumbnail_url) %>',
-            controls: false
-          })
-        </script>
+      <%= link_to admin_media_sermon_path(sermon), style: "width:100%;"   do %>
+        <% if sermon.get_video_url.present? %>
+          <div id="video-player-<%= sermon.id %>"></div>
+          <script>
+            playerInstance = jwplayer('video-player-<%= sermon.id %>');
+            playerInstance.setup({
+              file: '<%= raw(sermon.get_video_url) %>',
+              image: '<%= raw(sermon.get_thumbnail_url) %>',
+              controls: false
+            })
+          </script>
+        <% elsif sermon.get_thumbnail_url.present? %>
+          <img src="<%= raw(sermon.get_thumbnail_url) %>" width="100%" />
+        <% else %>
+          <div style="padding-bottom:56.25%;position:relative"><div style="position:absolute;height:100%;width:100%" class="bg-light text-muted d-flex justify-content-center align-items-center"><small>No thumbnail</small></div></div>
+        <% end %>
       <% end %>
       <div class="card-footer d-flex align-items-center justify-content-between">
         <%= form_with(class: 'form', model: sermon, local: true) do |form| %>
-          <div class="custom-control custom-switch">
+          <div class="custom-control custom-switch d-flex">
             <%= form.check_box :published, { id: sermon.id, class: 'custom-control-input', onchange: 'this.form.submit()' } %>
-            <label class="custom-control-label blue-text font-weight-500" for="<%= sermon.id %>">Publish</label>
+            <label class="custom-control-label blue-text font-weight-500 small m-0 d-flex flex-column-reverse" for="<%= sermon.id %>">Publish</label>
           </div>
         <% end %>
-        <small class="m-0 text-muted font-weight-500">Upload Date: <%= sermon.created_at.strftime("%m/%d/%Y") %></small>
+        <small class="text-xs m-0 text-muted font-weight-500">Uploaded: <%= sermon.created_at.strftime("%m/%d/%Y") %></small>
       </div>
     </div>
   </div>
