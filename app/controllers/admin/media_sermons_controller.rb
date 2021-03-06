@@ -38,7 +38,7 @@ class Admin::MediaSermonsController < ApplicationController
           # @admin_media_sermon.generate_hls_video if create_admin_media_sermon_params[:video].present?
         end
       end
-      redirect_to @admin_media_sermon, notice: 'Media sermon was successfully created.'
+      redirect_to admin_media_sermons_url, notice: 'Media sermon was successfully created.'
     else
       render :new
     end
@@ -66,7 +66,7 @@ class Admin::MediaSermonsController < ApplicationController
   # DELETE /admin/media_sermons/1
   def destroy
     @admin_media_sermon.destroy
-    redirect_to admin_media_sermons_url, notice: 'Media sermon was successfully destroyed.'
+    redirect_to admin_media_sermons_url(view: params[:view] || 'grid'), notice: 'Media sermon was successfully destroyed.'
   end
 
   private

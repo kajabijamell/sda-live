@@ -4,11 +4,14 @@
   link: new_admin_media_sermon_path,
   icon: 'fa-photo-video' } %>
 
-  <div class="container mt-n15">
+  <div class="container mt-n20">
     <div class="card mb-5">
-    <div class="card-header text-right">
-      <a href="<%= admin_media_sermons_path(view: 'grid') %>" class="btn btn-light btn-sm <%= params[:view] == 'grid' ? 'disabled' : '' %>" role="button" aria-disabled="true"><span class="line-height-0 mr-2">Grid</span><i class="fas fa-th-large"></i></a></a>
-      <a href="<%= admin_media_sermons_path(view: 'table') %>" class="btn btn-light btn-sm <%= params[:view] != 'grid' ? 'disabled' : '' %>" role="button" aria-disabled="true"><span class="line-height-0 mr-2">List</span><i class="fas fa-list-ul"></i></a></a>
+    <div class="card-header d-flex flex-row align-items-center justify-content-between">
+      <span class="m-0 p-0 small">Total Videos: <%= @admin_media_sermons.length %></span>
+      <div class="text-right">
+        <a href="<%= admin_media_sermons_path(view: 'grid') %>" class="btn btn-light btn-sm <%= params[:view] == 'grid' ? 'disabled' : '' %>" role="button" aria-disabled="true"><span class="line-height-0 mr-2">Grid</span><i class="fas fa-th-large"></i></a></a>
+        <a href="<%= admin_media_sermons_path(view: 'table') %>" class="btn btn-light btn-sm <%= params[:view] != 'grid' ? 'disabled' : '' %>" role="button" aria-disabled="true"><span class="line-height-0 mr-2">List</span><i class="fas fa-list-ul"></i></a></a>
+      </div>
     </div>
       <div class="card-body pt-2 pb-0">
         <% if @admin_media_sermons.length > 0 %>
@@ -27,23 +30,23 @@
               <% end %>
             </div>
           <% else %>
-            <div class="tbl-header small">
-              <div class="table-responsive">
-                <table class="table table-borderless mb-0">
-                  <thead>
-                  <tr>
-                    <th class="text-black pt-0 font-weight-400">Video Thumbnail</th>
-                    <th class="text-black pt-0 font-weight-400">Video Name</th>
-                    <th class="text-black pt-0 font-weight-400">Publish Status</th>
-                    <th class="text-black pt-0 font-weight-400"><%= sortable('created_at', 'Upload Date')  %> <%= sort_icon('created_at') %></th>
-                    <th>&nbsp;</th>
-                  </tr>
-                  </thead>
-                </table>
+            <div class="video-library-list-view pt-2 pb-4">
+              <div class="tbl-header small">
+                <div class="table-responsive">
+                  <table class="table table-borderless mb-0">
+                    <thead>
+                    <tr>
+                      <th class="thumbnail text-black pt-0 font-weight-400">Video Thumbnail</th>
+                      <th class="title text-black pt-0 font-weight-400">Video Name</th>
+                      <th class="status text-black pt-0 font-weight-400">Publish Status</th>
+                      <th class="upload-date text-black pt-0 font-weight-400"><%= sortable('created_at', 'Upload Date')  %> <%= sort_icon('created_at') %></th>
+                      <th class="actions">&nbsp;</th>
+                    </tr>
+                    </thead>
+                  </table>
+                </div>
               </div>
-            </div>
-            <div class="video-library-list-view">
-              <div class="tbl-content">
+              <div class="tbl-content small">
                 <div class="table-responsive">
                   <table class="table table-striped table-borderless mb-0"> 
                     <tbody>

@@ -31,7 +31,7 @@
               <% end %>
               <div class="dropdown-divider"></div>
             <% end %>
-            <%= link_to sermon, method: :delete, class: 'dropdown-item', data: { confirm: 'Are you sure ?' }  do %>
+            <%= link_to admin_media_sermon_url(sermon, view: view), method: :delete, class: 'dropdown-item', data: { confirm: 'Are you sure ?' }  do %>
               <div class="w-100">Delete</div>
               <div class="dropdown-item-icon">
                 <i class="fa fa-trash-alt"></i>
@@ -40,21 +40,13 @@
           </div>
         </div>
       </div>
-      <%= link_to admin_media_sermon_path(sermon), style: "width:100%;"   do %>
-        <% if sermon.get_video_url.present? %>
-          <div id="video-player-<%= sermon.id %>"></div>
-          <script>
-            playerInstance = jwplayer('video-player-<%= sermon.id %>');
-            playerInstance.setup({
-              file: '<%= raw(sermon.get_video_url) %>',
-              image: '<%= raw(sermon.get_thumbnail_url) %>',
-              controls: false
-            })
-          </script>
-        <% elsif sermon.get_thumbnail_url.present? %>
+      <%= link_to edit_admin_media_sermon_path(sermon), style: "width:100%;"   do %>
+        <% if sermon.get_thumbnail_url.present? %>
           <img src="<%= raw(sermon.get_thumbnail_url) %>" width="100%" />
         <% else %>
-          <div style="padding-bottom:56.25%;position:relative"><div style="position:absolute;height:100%;width:100%" class="bg-light text-muted d-flex justify-content-center align-items-center"><small>No thumbnail</small></div></div>
+          <%= link_to edit_admin_media_sermon_path(sermon) do %>
+            <%= render '/shared/video_placeholder', bg: :light %>
+          <% end %>
         <% end %>
       <% end %>
       <div class="card-footer d-flex align-items-center justify-content-between">
@@ -70,45 +62,39 @@
   </div>
 <% else %>
   <tr>
-    <td class="text-black">
-      <% if sermon.get_video_url.present? %>
-        <div id="video-player-<%= sermon.id %>"></div>
-        <script>
-            playerInstance = jwplayer('video-player-<%= sermon.id %>');
-            playerInstance.setup({
-                file: '<%= raw(sermon.get_video_url) %>',
-                image: '<%= raw(sermon.get_thumbnail_url) %>',
-                controls: false
-            })
-        </script>
+    <td class="thumbnail text-dark" width="75px">
+      <%= link_to edit_admin_media_sermon_path(sermon) do %>
+      <% if sermon.get_thumbnail_url.present? %>
+          <img src="<%= raw(sermon.get_thumbnail_url) %>" width="100%" />
       <% else %>
-        No Thumbnail
+          <%= render '/shared/video_placeholder', bg: :light %>
+        <% end %>
       <% end %>
     </td>
-    <td class="text-black" title="<%= sermon.title if (sermon.title&.length || 0) > 50 %>"><%= sermon.title&.truncate(50) %></td>
-    <td class="text-black">
+    <td class="title text-dark" title="<%= sermon.title if (sermon.title&.length || 0) > 50 %>"><%= sermon.title&.truncate(50) %></td>
+    <td class="status text-dark">
       <%= form_with(class: 'form', model: sermon, url: admin_media_sermon_path(id: sermon.id, view: view), local: true) do |form| %>
-        <div class="custom-control custom-switch">
+        <div class="custom-control custom-switch d-flex justify-content-center">
           <%= form.check_box :published, { id: sermon.id, class: 'custom-control-input', onchange: 'this.form.submit()' } %>
-          <label class="custom-control-label blue-text font-weight-500" for="<%= sermon.id %>">Publish</label>
+          <label class="custom-control-label blue-text text-center" for="<%= sermon.id %>"></label>
         </div>
       <% end %>
     </td>
-    <td class="text-black"><%= sermon.created_at.strftime("%m/%d/%Y") %></td>
-    <td>
+    <td class="upload-date text-dark"><%= sermon.created_at.strftime("%m/%d/%Y") %></td>
+    <td class="actions">
       <% if sermon.video.present? %>
         <a class="mr-3 clipboard-copy-btn" data-clipboard-text="<%= sermon.get_video_url %>">
-          <i class="fa fa-clone indigo-text"></i>
+          <i class="fa fa-clone text-gray-500"></i>
         </a>
         <%= link_to sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'mr-3', target: '_blank' do %>
-          <i class="fa fa-download indigo-text"></i>
+          <i class="fa fa-download text-gray-500"></i>
         <% end %>
       <% end %>
-      <%= link_to edit_admin_media_sermon_path(sermon), class: 'mr-3' do %>
-        <i class="fas fa-edit indigo-text"></i>
+      <%= link_to edit_admin_media_sermon_path(sermon), class: 'mr-3 text-decoration-none' do %>
+        <i class="fas fa-edit text-gray-600"></i>
       <% end %>
-      <%= link_to sermon, method: :delete, data: { confirm: 'Are you sure ?' }  do %>
-        <i class="fas fa-trash-alt indigo-text"></i>
+      <%= link_to admin_media_sermon_url(sermon, view: view), method: :delete, data: { confirm: 'Are you sure ?' }, class: "text-decoration-none"  do %>
+        <i class="fas fa-trash-alt text-gray-600"></i>
       <% end %>
     </td>
   </tr>

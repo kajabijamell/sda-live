@@ -17,7 +17,7 @@
   color: $green;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-  background: $link-water;
+  background: $grey;
 }
 .table td {
   vertical-align: middle;
@@ -101,6 +101,18 @@ button:focus {
   max-height: 63vh;
   overflow-y: auto;
   overflow-x: hidden;
+  & .thumbnail {
+    width: 150px;
+  }
+  & .status {
+    width: 120px;
+  }
+  & .upload-date {
+    width: 150px;
+  }
+  & .actions {
+    width: 120px;
+  }
 }
 .video-library-grid-view {
   max-height: 73vh;
@@ -142,10 +154,4 @@ button:focus {
 }
 .uppy-ProgressBar {
   background: #eeeeee;
-}
-.tbl-header th {
-  width: 20%;
-}
-.tbl-content td {
-  width: 20%;
 }
