@@ -2,10 +2,10 @@
 
 class Public::EventsController < PublicController
   def index
-    @events = @church.events
+    @events = @church.events.kept
   end
 
   def show
-    @event = @church.events.find(params[:id])
+    @event = @church.events.kept.find(params[:id])
   end
 end

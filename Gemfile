@@ -111,3 +111,6 @@ gem 'discard', '~> 1.2'
 
 # Schedule tasks
 gem 'whenever', require: false
+
+# Notification done right
+gem 'noticed'
