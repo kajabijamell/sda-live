@@ -30,7 +30,7 @@ class SettingsController < ApplicationController
       flash[:success] = 'Profile saved.'
       redirect_to settings_profile_path
     else
-      flash.now[:error] = current_user.error.full_messages.first
+      flash.now[:error] = current_user.errors.full_messages.first
       render 'settings/profile'
     end
   end

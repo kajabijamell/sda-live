@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
   validates_presence_of :fname, :lname
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.all.map(&:name)
-  validates_uniqueness_of :subdomain, if: :admin?
+  validate :unique_subdomain, if: :admin?
   validates_format_of :subdomain, with: /\A^[A-Za-z0-9]+\Z/i, if: :admin?
 
   after_create :create_church, if: :admin?
@@ -104,5 +104,15 @@ class User < ApplicationRecord
       break unless self.class.exists?(subdomain: temp_subdomain)
     end
     temp_subdomain
+  end
+
+  private
+
+  def unique_subdomain
+    if id.present?
+      errors.add(:subdomain, 'should be unique.') if User.admin.where(subdomain: subdomain).count > 1
+    elsif User.admin.where(subdomain: subdomain).count.positive?
+      errors.add(:subdomain, 'should be unique.')
+    end
   end
 end
