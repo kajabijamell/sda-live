@@ -372,7 +372,10 @@ DEPENDENCIES
   marcel (~> 0.3)
   mini_magick
   mux_ruby (~> 1.7.0)
+<<<<<<< HEAD
   noticed
+=======
+>>>>>>> 78870dce6ae0224d5728b971fe5d61556b98fd14
   omniauth (~> 1.9.1)
   omniauth-facebook
   omniauth-google-oauth2

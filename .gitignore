@@ -37,9 +37,13 @@ yarn-debug.log*
 .yarn-integrity
 .env
 .idea/
+<<<<<<< HEAD
 .DS_Store
 app/.DS_Store
 config/.DS_Store
 lib/.DS_Store
 public/.DS_Store
 .swp
+=======
+.env
+>>>>>>> 78870dce6ae0224d5728b971fe5d61556b98fd14
