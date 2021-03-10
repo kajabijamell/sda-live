@@ -55,14 +55,28 @@
                 <p class="mb-0 small text-gray-600">Here's what you have coming up.</p>
               </div>
               <div class="card-body">
-                <div class="text-black-25">No scheduled streams.</div>
+                <% if @upcoming_events.blank? %>
+                  <div class="text-black-25">No scheduled streams.</div>
+                <% else %>
+                  <ul class="list-group list-group-flush">
+                    <% @upcoming_events.each do |event| %>
+                      <li class="list-group-item">
+                        <%= event.name %>
+                        <br/>
+                        <small>Starting: <%= event.start_datetime.strftime('%e %b %Y %I:%M %p') %></small>
+                        <br/>
+                        <small>Ending: <%= event.end_datetime.strftime('%e %b %Y %I:%M %p') %></small>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
               </div>
-              <a class="card-footer" href="#">
-                  <div class="d-flex align-items-center justify-content-between small text-body">
-                      <span>Schedule a new stream</span>
-                      <i class="fas fa-angle-right"></i>
-                  </div>
-              </a>
+              <%= link_to new_admin_event_path, class: 'card-footer' do %>
+                <div class="d-flex align-items-center justify-content-between small text-body">
+                  <span>Schedule a new stream</span>
+                  <i class="fas fa-angle-right"></i>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

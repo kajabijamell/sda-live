@@ -15,10 +15,11 @@ class Admin::DashboardController < ApplicationController
     @asset_duration = (query.sum(:asset_duration) / 3600.0).round(2)
     delivered_seconds = query.sum(:delivered_seconds)
     @visitors = if @asset_duration != 0
-      (delivered_seconds / @asset_duration).round(2)
-    else
-      0
-    end
+                  (delivered_seconds / @asset_duration).round(2)
+                else
+                  0
+                end
+    @upcoming_events = current_user.church.events.kept.order('start_datetime desc').where('start_datetime > ?', Time.now)
   end
 end
 

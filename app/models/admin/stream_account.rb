@@ -45,7 +45,7 @@ class Admin::StreamAccount < ApplicationRecord
 
   def latest_token
     if provider == 'google_oauth2'
-      refresh! if expires_at < Time.now
+      refresh! if expires_at.blank? || expires_at < Time.now
     end
     token
   end

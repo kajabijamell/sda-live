@@ -12,6 +12,7 @@
           <nav class="nav nav-borders">
             <a class="nav-link ml-0 active" href="#profile" data-toggle="tab" role="tab">Profile</a>
             <a class="nav-link" href="#billing" data-toggle="tab" role="tab">Billing</a>
+            <a class="nav-link" href="#connected-accounts" data-toggle="tab" role="tab">Connected Accounts</a>
             <a class="nav-link d-none" href="#notifications" data-toggle="tab" role="tab">Notifications</a>
           </nav>
         </div>
@@ -25,40 +26,14 @@
               <%= render 'payment_methods' %>
               <%= render 'payment_history' %>
             </div>
+            <div class="tab-pane fade" id="connected-accounts" role="tabpanel" aria-labelledby="profile-tab">
+              <%= render 'connected_accounts' %>
+            </div>
             <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
                 <h5 class="card-title">Notifications Tab</h5>
             </div>
           </div>
         </div>
-        <% if current_user.admin? %>
-          <h3>Connected Accounts</h3>
-          <div class="row">
-            <% current_user.church.stream_accounts.each do |stream| %>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= stream.name %></h5>
-                    <p class="card-text"><%= stream.provider_text %></p>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <br/>
-          <div class="form-group">
-            <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary' do %>
-              <i class="fab fa-facebook-square"></i>&nbsp;&nbsp; Connect Facebook
-            <% end if @facebook_stream_accounts.present? && @facebook_stream_accounts < 3 %>
-            <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary'  do %>
-              <i class="fab fa-youtube"></i>&nbsp;&nbsp; Connect Youtube
-            <% end if @youtube_stream_accounts.present? && @youtube_stream_accounts < 3 %>
-          </div>
-        <% end %>
-        <%= f.submit 'Save', class: 'btn btn-primary mt-2 px-5' %>
-        <%= link_to('Delete My Account', settings_profile_path, method: :delete,
-                    class: 'btn btn-outline-red float-right mt-2',
-                    data: { confirm: 'Are you sure you want to delete. This action can\'t be reverted.' }) if current_user.admin? %>
       </div>
     </div>
   </div>

@@ -1,0 +1,27 @@
+<div class="mb-3">
+  <% if current_user.admin? %>
+    <h3>Connected Accounts</h3>
+    <div class="row">
+      <% current_user.church.stream_accounts.each do |stream| %>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= stream.name %></h5>
+              <p class="card-text"><%= stream.provider_text %></p>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br/>
+    <div class="form-group">
+      <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary' do %>
+        <i class="fab fa-facebook-square"></i>&nbsp;&nbsp; Connect Facebook
+      <% end if @facebook_stream_accounts.present? && @facebook_stream_accounts < 3 %>
+      <%= link_to user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary'  do %>
+        <i class="fab fa-youtube"></i>&nbsp;&nbsp; Connect Youtube
+      <% end if @youtube_stream_accounts.present? && @youtube_stream_accounts < 3 %>
+    </div>
+  <% end %>
+</div>

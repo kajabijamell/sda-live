@@ -26,8 +26,10 @@ class AdminEventLiveStreamDiscardJob < ApplicationJob
                        event_stream_account.stream_account
                      )
                    end
-        if response.code == '200'
-
+        if response && response.code == '200'
+          admin_event.succeeded_discarding_livestream!
+        else
+          admin_event.failed_discarding_livestream!
         end
       end
       admin_event.succeeded_discarding_livestream!
