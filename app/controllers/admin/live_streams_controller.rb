@@ -8,9 +8,9 @@ class Admin::LiveStreamsController < ApplicationController
   # GET /admin/live_streams
   def index
     @admin_live_streams = current_user.church.live_streams.kept
-    if @admin_live_streams.length == 1
-      redirect_to @admin_live_streams.first      
-    end
+    # if @admin_live_streams.length == 1
+    #   redirect_to @admin_live_streams.first      
+    # end
   end
 
   # GET /admin/live_stream/1
