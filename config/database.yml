@@ -86,7 +86,7 @@ test:
 #
 staging:
   <<: *default
-  database: sda_live_production
+  database: sda_live_staging
   username: <%= ENV['POSTGRES_USERNAME'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
 

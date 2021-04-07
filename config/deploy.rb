@@ -5,7 +5,7 @@ set :rbenv_ruby, '2.6.6'
 set :application, 'church_flow'
 set :repo_url, 'git@github.com:kajabijamell/sda-live.git'
 set :rails_env, fetch(:stage).to_s
-set :deploy_to, "/home/deploy/#{fetch(:application)}"
+set :deploy_to, "/home/ubuntu/#{fetch(:application)}"
 
 set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
 
