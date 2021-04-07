@@ -18,3 +18,5 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 set :keep_releases, 5
 
 set :ssh_options, forward_agent: true, keys: %w[~/.ssh/id_rsa.pub]
+
+set :pty, false
