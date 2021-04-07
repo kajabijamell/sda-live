@@ -11,8 +11,8 @@ else
   s3_options = {
     bucket: ENV['S3_BUCKET'],
     region: 'us-west-1',
-    access_key_id: ENV['ACCESS_KEY_ID'],
-    secret_access_key: ENV['SECRET_ACCESS_KEY']
+    access_key_id: ENV['S3_ACCESS_KEY_ID'],
+    secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
   }
 
   Shrine.storages = {

@@ -5,43 +5,37 @@
           <%= link_to(admin_media_sermons_path, class: 'close position-absolute') do %>
             <%= image_tag('img/icon_close.png') %>
           <% end %>
-          <% if admin_media_sermon.id.blank? %>
-            <div class="col-md-4">
-              <div class="form-group position-relative">
-                <%= form.label :video, class: 'text-black' %>
-                <br/>
-                <% if admin_media_sermon.get_video_url.present? %>
-                  <div id="video-player"></div>
-                  <script>
-                      playerInstance = jwplayer('video-player');
-                      playerInstance.setup({
-                          file: '<%= raw(admin_media_sermon.get_video_url) %>',
-                          image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
-                          height: 300,
-                          controls: true
-                      })
-                  </script>
-                <% else %>
-                  <div class="video-placeholder position-relative">
-                    <div class="up-video">
-                      <i class="fa fa-video text-blue"></i>
-                    </div>
+          <div class="col-md-4">
+            <div class="form-group position-relative">
+              <%= form.label :video, class: 'text-black mb-2' %>
+              <% if admin_media_sermon.get_video_url.present? %>
+                <div id="video-player"></div>
+                <script>
+                    playerInstance = jwplayer('video-player');
+                    playerInstance.setup({
+                      file: '<%= raw(admin_media_sermon.get_video_url) %>',
+                      image: '<%= raw(admin_media_sermon.get_thumbnail_url) %>',
+                      height: 300,
+                      controls: true
+                    })
+                </script>
+              <% else %>
+                <div class="video-placeholder position-relative">
+                  <div class="up-video">
+                    <i class="fa fa-video text-blue"></i>
                   </div>
-                <% end %>
-<!--                <iframe width="100%" height="250" src="https://www.youtube.com/embed/9xwazD5SyVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                </div>
                 <div class="UppyForm mt-3">
                   <div class="btn btn-primary mt-3"></div>
                   <%= form.file_field :video, accept: 'video/mp4', class: 'custom-file-input-button mt-3 w-100'  %>
                 </div>
                 <div class="uppy_progress_bar"></div>
-              </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
           <div class="col-md-4">
             <div class="form-group position-relative">
-              <%= form.label :thumbnail, class: 'text-black' %>
-              <br/>
-<!--              <iframe width="100%" height="250" src="https://www.youtube.com/embed/9xwazD5SyVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+              <%= form.label :thumbnail, class: 'text-black mb-2' %>
               <% if admin_media_sermon.get_thumbnail_url.present? %>
                 <%= image_tag(admin_media_sermon.get_thumbnail_url, height: 100) %>
                 <br/>

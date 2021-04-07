@@ -1,8 +1,7 @@
-<%= render partial: 'shared/simple_page_header', locals: { 
-  title: 'Dashoard',
-  btn_text: 'View Schedule',
-  icon: 'fa-table',
-  link: admin_events_path } %>
+<%= render partial: "shared/header", locals: { 
+  title: "Dashboard",
+  icon: "fa-table"  } 
+%>
 
 <div class="container mt-n20">
   <div class="card mb-5">
@@ -20,12 +19,12 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8 mb-2">
+          <div class="col mb-2">
             <% if @admin_live_stream.blank? %>
               <%= render 'null_stream' %>
             <% else %>
               <%= render 'shared/stream_feed' %>
-              <div class="card mt-3">
+              <%# <div class="card mt-3">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between">
                       <div>
@@ -45,10 +44,10 @@
                       </div>
                     </div>
                 </div>
-              </div>
+              </div> %>
             <% end %>
           </div>
-          <div class="col-4">
+          <div class="d-none col-4">
             <div class="card">
               <div class="card-header">
                 <h5>Stream Schedule</h5>

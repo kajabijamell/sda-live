@@ -44,3 +44,6 @@ lib/.DS_Store
 public/.DS_Store
 .env
 .swp
+
+# Ignore application configuration
+/config/application.yml

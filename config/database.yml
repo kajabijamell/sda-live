@@ -84,8 +84,14 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: sda_live_production
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
 production:
   <<: *default
   database: sda_live_production
   username: sda_live
-  password: <%= ENV['SDA_LIVE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_URL'] %>

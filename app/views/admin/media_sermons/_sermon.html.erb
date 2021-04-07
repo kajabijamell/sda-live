@@ -83,11 +83,11 @@
     <td class="upload-date text-dark"><%= sermon.created_at.strftime("%m/%d/%Y") %></td>
     <td class="actions">
       <% if sermon.video.present? %>
-        <a class="mr-3 clipboard-copy-btn" data-clipboard-text="<%= sermon.get_video_url %>">
-          <i class="fa fa-clone text-gray-500"></i>
+        <a class="mr-3 text-decoration-none clipboard-copy-btn" data-clipboard-text="<%= sermon.get_video_url %>">
+          <i class="fa fa-clone text-gray-600"></i>
         </a>
-        <%= link_to sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'mr-3', target: '_blank' do %>
-          <i class="fa fa-download text-gray-500"></i>
+        <%= link_to sermon.video.url(response_content_disposition: ContentDisposition.attachment), class: 'mr-3 text-decoration-none', target: '_blank' do %>
+          <i class="fa fa-download text-gray-600"></i>
         <% end %>
       <% end %>
       <%= link_to edit_admin_media_sermon_path(sermon), class: 'mr-3 text-decoration-none' do %>

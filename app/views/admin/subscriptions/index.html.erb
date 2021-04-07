@@ -2,36 +2,38 @@
   title: 'Choose a Subscription',
   icon: 'fa-tag' } %>
   <div class="container mt-n20">
-    <% @subscriptions.each do |subscription| %>
-      <div class="col-md-4">
-        <div class="card float-left mr-5">
-          <div class="card-header">
-            <h4 class="m-0"><%= subscription.name %></h4>
-          </div>
-          <div class="card-body">
-            <div class="">
-              <p class="font-weight-500">Plan Details:</p>
-              <ul style="list-style:square;padding-left:20px">
-                <li><%= subscription.live_streams %> Live Streams</li>
-                <li><%= subscription.stream_size %> hours live stream per month</li>
-                <li><%= subscription.targets %> targets (ex: facebook, youtube ..)</li>
-                <li><%= subscription.viewer_count %> users on livestreams.</li>
-                <li><%= subscription.video_storage %> GB of video storage to build gallery</li>
-              </ul>
-              <h5 class="price mt-3 mb-3 font-weight-300"><%= number_to_currency(subscription.price) %><span class="small italic">/month</span></h5>
-              <% if @subscription_profile.subscription_id.present? %>
-                <% if @subscription_profile.subscription_id == subscription.id %>
-                  <a href="#" class="btn btn-outline-primary d-block disabled">Current</a>
+    <div class="row">
+      <% @subscriptions.each do |subscription| %>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="m-0"><%= subscription.name %></h4>
+            </div>
+            <div class="card-body">
+              <div class="">
+                <h4 class="font-weight-400">Plan Details:</h4>
+                <ul style="list-style:square;padding-left:20px">
+                  <li><%= subscription.live_streams %> Live Streams</li>
+                  <li><%= subscription.stream_size %> hours live stream per month</li>
+                  <li><%= subscription.targets %> targets (ex: facebook, youtube ..)</li>
+                  <li><%= subscription.viewer_count %> users on livestreams</li>
+                  <li><%= subscription.video_storage %> GB of video storage to build gallery</li>
+                </ul>
+                <h5 class="price mt-3 mb-3 font-weight-300"><%= number_to_currency(subscription.price) %><span class="small italic">/month</span></h5>
+                <% if @subscription_profile.subscription_id.present? %>
+                  <% if @subscription_profile.subscription_id == subscription.id %>
+                    <a href="#" class="btn btn-outline-primary d-block disabled">Current</a>
+                  <% else %>
+                    <%= link_to(get_upgrade_or_downgrade(subscription, @subscription_profile),
+                    admin_change_subscription_path(subscription), class: 'btn btn-primary d-block', method: :post) %>
+                  <% end %>
                 <% else %>
-                  <%= link_to(get_upgrade_or_downgrade(subscription, @subscription_profile),
-                  admin_change_subscription_path(subscription), class: 'btn btn-primary d-block', method: :post) %>
+                  <%= link_to 'Choose', admin_choose_subscription_path(subscription), class: 'btn btn-primary d-block', method: :post  %>
                 <% end %>
-              <% else %>
-                <%= link_to 'Choose', admin_choose_subscription_path(subscription), class: 'btn btn-primary d-block', method: :post  %>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>

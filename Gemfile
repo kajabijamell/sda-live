@@ -30,16 +30,27 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
+  # Capistrano gems
+  gem 'capistrano', '~> 3.16', require: false
+  gem 'capistrano-passenger', '~> 0.2.1'
+  gem 'capistrano-rails', '~> 1.6.1'
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rbenv', '~> 2.2'
+  gem 'capistrano-sidekiq', '~> 2.0.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Dev email testing
+  gem 'letter_opener'
+  # Anotate models
+  gem 'annotate'
 end
 
 group :test do
@@ -53,13 +64,6 @@ end
 # authentication and authorisation
 gem 'devise'
 gem 'pundit'
-
-group :development do
-  # Dev email testing
-  gem 'letter_opener'
-  # Anotate models
-  gem 'annotate'
-end
 
 # For client side validations
 gem 'client_side_validations'
@@ -86,10 +90,10 @@ gem 'mux_ruby', '~> 1.7.0'
 gem 'sidekiq'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # gem
-gem "honeybadger", "~> 4.0"
+gem 'honeybadger', '~> 4.0'
 
 # Stripe payment
 gem 'stripe'
@@ -108,3 +112,6 @@ gem 'discard', '~> 1.2'
 
 # Schedule tasks
 gem 'whenever', require: false
+
+# Environment setup
+gem 'figaro'

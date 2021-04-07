@@ -1,16 +1,16 @@
+<video id="video" width="100%" controls style="border-radius:4px;"></video>
 <% if @admin_live_stream.status == 'active' %>
-  <video id="video" width="100%" controls></video>
   <script>
-    poster = "https://image.mux.com/<%= @admin_live_stream.playback_id %>/thumbnail.jpg";
-    videoSrc = 'https://stream.mux.com/<%= @admin_live_stream.playback_id %>.m3u8';
-    let playerInstance = jwplayer('video');
-    playerInstance.setup({
-        file: videoSrc,
-        image: poster,
-        controls: true
-    })
+      poster = "https://image.mux.com/<%= @admin_live_stream.playback_id %>/thumbnail.jpg";
+      videoSrc = 'https://stream.mux.com/<%= @admin_live_stream.playback_id %>.m3u8';
+      let playerInstance = jwplayer('video');
+      playerInstance.setup({
+          file: videoSrc,
+          image: poster,
+          controls: true
+      })
   </script>
-  <div id="no-live-stream" style="padding-bottom:56.25%;position:relative" hidden><div style="position:absolute;height:100%;width:100%;pointer-events:none;" class="bg-black rounded d-flex justify-content-center align-items-center"><h5>Stream is offline</h5></div></div>
+  <h5 class="mt-2" id="no-live-stream" hidden>Stream is offline.</h5>
 <% else %>
-  <div id="no-live-stream" style="padding-bottom:56.25%;position:relative"><div style="position:absolute;height:100%;width:100%;pointer-events:none;" class="bg-black rounded d-flex justify-content-center align-items-center"><h5>Stream is offline</h5></div></div>
+  <h5 class="mt-2" id="no-live-stream">Stream is offline.</h5>
 <% end %>
